@@ -1,27 +1,15 @@
 [
   {
-    "id": "room-1",
-    "name": "Kamar Mandi 1",
-    "ip": "192.168.1.100",
-    "source": "SIM",
-    "mode": "ON",
-    "detections": 1,
-    "online": true,
-    "lamp": true,
-    "presence": false,
-    "stateSince": 1793086781725.6418
-  },
-  {
-    "id": "room-1793085525937",
-    "name": "Ruang 1",
-    "ip": "10.167.254.141",
+    "id": "room-1794881535820",
+    "name": "Sisnam Prototype",
+    "ip": "172.23.109.56",
     "source": "LIVE",
-    "mode": "AUTO",
-    "detections": 2,
-    "online": false,
     "presence": true,
-    "lamp": true,
-    "rssi": -64,
-    "stateSince": 1793086426594.302
+    "lamp": false,
+    "mode": "OFF",
+    "rssi": -53,
+    "online": false,
+    "stateSince": 1794881621801.6602,
+    "detections": 1
   }
 ]
