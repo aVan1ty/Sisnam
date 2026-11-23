@@ -8,23 +8,74 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link
-    href="https://fonts.googleapis.com/css2?family=Bangers&amp;family=Space+Grotesk:wght@500;700;900&amp;family=JetBrains+Mono:wght@600;800&amp;family=Yuji+Boku&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bangers&amp;family=Space+Grotesk:wght@500;700;900&amp;family=JetBrains+Mono:wght@600;800&amp;family=Orbitron:wght@600;800;900&amp;family=Yuji+Boku&amp;display=swap"
     rel="stylesheet">
   <style>
+    /* ========================================================
+       THEME SYSTEM VARIABLES (DEFAULT: MANGA / KOMIK STITCH)
+       ======================================================== */
     :root {
+      /* Core Palette */
       --ink: #0d0d0d;
       --paper: #fbf7ee;
       --panel-bg: #ffffff;
+      --text-muted: #555555;
       --screentone-dot: #e2ddd3;
       --red-accent: #ff2a2a;
       --yellow-action: #ffe600;
       --cyan-tech: #00f0ff;
       --green-safe: #00e575;
+
+      /* Inputs & Buttons */
+      --input-bg: #ffffff;
+      --input-color: #0d0d0d;
+      --input-focus-bg: #fffef2;
+      --btn-default-bg: #ffffff;
+      --btn-default-color: #0d0d0d;
+      --active-btn-color: #0d0d0d;
+
+      /* Boxes & Elements */
+      --box-bg: #fafafa;
+      --box-occupied-bg: #fff1b8;
+      --box-occupied-border: #0d0d0d;
+      --box-lamp-bg: #ffe680;
+      --sim-bg: #fdf2d0;
+      --mode-group-bg: #0d0d0d;
+      --mode-btn-hover: #eeeeee;
+      --nav-bg: #fbf7ee;
+      --nav-hover-bg: #efe9dc;
+      --ribbon-bg: #0d0d0d;
+      --ribbon-color: #ffffff;
+      --table-th-bg: #0d0d0d;
+      --table-th-color: #ffffff;
+      --table-border: #0d0d0d;
+      --table-zebra: #fbf9f4;
+      --border-dashed: rgba(0, 0, 0, 0.2);
+
+      /* Borders & Geometry */
       --border-thick: 3px solid var(--ink);
       --border-heavy: 4px solid var(--ink);
+      --border-radius: 0px;
+      --border-radius-sm: 0px;
+      --border-radius-xs: 0px;
+
+      /* Shadows */
       --shadow-comic: 5px 5px 0px var(--ink);
       --shadow-comic-sm: 3px 3px 0px var(--ink);
       --shadow-comic-lg: 8px 8px 0px var(--ink);
+      --shadow-comic-xs: 2px 2px 0px var(--ink);
+
+      /* Typography */
+      --font-heading: 'Bangers', cursive;
+      --font-body: 'Space Grotesk', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Background & Effects */
+      --bg-pattern: radial-gradient(var(--ink) 12%, transparent 13%);
+      --bg-pattern-size: 14px 14px;
+      --header-speedlines: repeating-conic-gradient(from 0deg, rgba(0, 0, 0, 0.04) 0deg 10deg, transparent 10deg 20deg);
+      --stamp-transform: rotate(-4deg);
+      --bubble-transform: rotate(-6deg);
     }
 
     * {
@@ -34,24 +85,26 @@
     }
 
     body {
-      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      font-family: var(--font-body);
       background-color: var(--paper);
-      /* Halftone Manga Screentone pattern */
-      background-image: radial-gradient(var(--ink) 12%, transparent 13%);
-      background-size: 14px 14px;
+      background-image: var(--bg-pattern);
+      background-size: var(--bg-pattern-size);
       background-position: 0 0;
       color: var(--ink);
       padding: 1.5rem 1rem 3rem;
       min-height: 100vh;
       line-height: 1.4;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     .container {
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 0 auto;
     }
 
-    /* Manga Action Header */
+    /* ========================================================
+       MANGA ACTION HEADER & THEME SWITCHER
+       ======================================================== */
     header {
       background: var(--panel-bg);
       border: var(--border-heavy);
@@ -65,9 +118,10 @@
       align-items: center;
       gap: 1.25rem;
       overflow: hidden;
+      border-radius: var(--border-radius);
+      transition: all 0.2s ease;
     }
 
-    /* Speedlines overlay in header */
     header::before {
       content: "";
       position: absolute;
@@ -75,7 +129,7 @@
       right: -50px;
       width: 200px;
       height: 200px;
-      background: repeating-conic-gradient(from 0deg, rgba(0, 0, 0, 0.04) 0deg 10deg, transparent 10deg 20deg);
+      background: var(--header-speedlines);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -90,19 +144,20 @@
     .manga-stamp {
       background: var(--red-accent);
       color: #fff;
-      font-family: 'Bangers', cursive;
+      font-family: var(--font-heading);
       font-size: 1.3rem;
       letter-spacing: 0.1em;
       padding: 0.3rem 0.75rem;
-      border: 3px solid var(--ink);
-      transform: rotate(-4deg);
-      box-shadow: 3px 3px 0px var(--ink);
+      border: var(--border-thick);
+      transform: var(--stamp-transform);
+      box-shadow: var(--shadow-comic-sm);
       display: inline-block;
       text-transform: uppercase;
+      border-radius: var(--border-radius-xs);
     }
 
     .brand-text h1 {
-      font-family: 'Bangers', cursive;
+      font-family: var(--font-heading);
       font-size: 2.2rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -110,39 +165,93 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      color: var(--ink);
     }
 
     .brand-text h1 .kanji {
       font-family: 'Yuji Boku', serif;
       font-size: 1.3rem;
       background: var(--yellow-action);
+      color: var(--active-btn-color, var(--ink));
       border: 2px solid var(--ink);
       padding: 0 0.4rem;
-      box-shadow: 2px 2px 0 var(--ink);
+      box-shadow: var(--shadow-comic-xs);
+      border-radius: var(--border-radius-xs);
     }
 
     .brand-text p {
       font-size: 0.85rem;
       font-weight: 700;
-      color: #555;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.04em;
       margin-top: 0.25rem;
     }
 
-    /* Manga Tab Switcher (Chapter / Panel style) */
-    .nav-tabs {
+    .header-right-actions {
       display: flex;
-      gap: 0.5rem;
-      background: var(--paper);
-      padding: 0.35rem;
-      border: var(--border-thick);
-      box-shadow: var(--shadow-comic-sm);
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
       z-index: 1;
     }
 
+    /* THEME BAR IN HEADER */
+    .theme-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--nav-bg);
+      padding: 0.35rem 0.6rem;
+      border: var(--border-thick);
+      box-shadow: var(--shadow-comic-sm);
+      border-radius: var(--border-radius-sm);
+    }
+
+    .theme-label {
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .theme-dropdown {
+      background: var(--input-bg);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      padding: 0.35rem 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: var(--shadow-comic-xs);
+      border-radius: var(--border-radius-xs);
+      outline: none;
+      max-width: 210px;
+    }
+
+    .btn-theme-manage {
+      background: var(--yellow-action);
+      color: var(--active-btn-color, var(--ink));
+      border: 2px solid var(--ink);
+      white-space: nowrap;
+    }
+
+    /* Manga Tab Switcher */
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--nav-bg);
+      padding: 0.35rem;
+      border: var(--border-thick);
+      box-shadow: var(--shadow-comic-sm);
+      border-radius: var(--border-radius-sm);
+    }
+
     .nav-tabs button {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-body);
       font-weight: 900;
       font-size: 0.85rem;
       text-transform: uppercase;
@@ -153,20 +262,24 @@
       color: var(--ink);
       cursor: pointer;
       transition: all 0.1s ease;
+      border-radius: var(--border-radius-xs);
     }
 
     .nav-tabs button:hover {
-      background: #efe9dc;
+      background: var(--nav-hover-bg);
     }
 
     .nav-tabs button.active {
       background: var(--yellow-action);
+      color: var(--active-btn-color, var(--ink));
       border: 2px solid var(--ink);
-      box-shadow: 2px 2px 0 var(--ink);
+      box-shadow: var(--shadow-comic-xs);
       transform: translate(-2px, -2px);
     }
 
-    /* Toolbar / Add Form: Manga Panel Dialog Box */
+    /* ========================================================
+       PANELS, FORMS & INPUTS
+       ======================================================== */
     .manga-panel {
       background: var(--panel-bg);
       border: var(--border-heavy);
@@ -174,21 +287,24 @@
       padding: 1.25rem;
       margin-bottom: 2rem;
       position: relative;
+      border-radius: var(--border-radius);
+      transition: all 0.2s ease;
     }
 
     .panel-ribbon {
       position: absolute;
       top: -14px;
       left: 20px;
-      background: var(--ink);
-      color: #fff;
-      font-family: 'Bangers', cursive;
+      background: var(--ribbon-bg);
+      color: var(--ribbon-color);
+      font-family: var(--font-heading);
       font-size: 0.95rem;
       letter-spacing: 0.08em;
       padding: 0.15rem 0.8rem;
       border: 2px solid var(--ink);
       text-transform: uppercase;
       box-shadow: 2px 2px 0 var(--red-accent);
+      border-radius: var(--border-radius-xs);
     }
 
     .toolbar-content {
@@ -219,68 +335,72 @@
       font-weight: 900;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      color: var(--ink);
     }
 
     input,
     select {
-      background: #fff;
+      background: var(--input-bg);
       color: var(--ink);
       border: var(--border-thick);
       padding: 0.55rem 0.85rem;
       font-size: 0.85rem;
       font-weight: 700;
       font-family: inherit;
-      box-shadow: 2px 2px 0 var(--ink);
+      box-shadow: var(--shadow-comic-xs);
       outline: none;
       transition: all 0.1s;
+      border-radius: var(--border-radius-xs);
     }
 
     input:focus,
     select:focus {
       border-color: var(--ink);
-      background: #fffef2;
-      box-shadow: 4px 4px 0 var(--ink);
+      background: var(--input-focus-bg);
+      box-shadow: var(--shadow-comic-sm);
       transform: translate(-1px, -1px);
     }
 
     .mono {
-      font-family: 'JetBrains Mono', monospace !important;
+      font-family: var(--font-mono) !important;
     }
 
-    /* Comic Buttons */
+    /* Buttons */
     .btn-comic {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-body);
       font-weight: 900;
       font-size: 0.85rem;
       text-transform: uppercase;
       padding: 0.6rem 1.25rem;
       border: var(--border-thick);
       cursor: pointer;
-      background: #fff;
-      color: var(--ink);
+      background: var(--btn-default-bg);
+      color: var(--btn-default-color);
       box-shadow: var(--shadow-comic-sm);
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
       transition: all 0.08s ease;
+      border-radius: var(--border-radius-sm);
     }
 
     .btn-comic:hover {
       transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0 var(--ink);
+      box-shadow: var(--shadow-comic);
     }
 
     .btn-comic:active {
       transform: translate(1px, 1px);
-      box-shadow: 1px 1px 0 var(--ink);
+      box-shadow: var(--shadow-comic-xs);
     }
 
     .btn-primary {
       background: var(--yellow-action);
+      color: var(--active-btn-color, var(--ink));
     }
 
     .btn-danger {
-      background: #ffe3e3;
+      background: var(--box-occupied-bg);
       color: var(--red-accent);
       border-color: var(--ink);
     }
@@ -295,7 +415,9 @@
       font-size: 0.75rem;
     }
 
-    /* Grid of Room Panels (Comic Book Grid Layout) */
+    /* ========================================================
+       ROOM CARDS GRID
+       ======================================================== */
     .rooms-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -303,7 +425,6 @@
       margin-bottom: 2rem;
     }
 
-    /* Comic Card */
     .room-card {
       background: var(--panel-bg);
       border: var(--border-heavy);
@@ -314,14 +435,15 @@
       gap: 1rem;
       position: relative;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border-radius: var(--border-radius);
+      color: var(--ink);
     }
 
     .room-card:hover {
       transform: translate(-3px, -3px);
-      box-shadow: 8px 8px 0 var(--ink);
+      box-shadow: var(--shadow-comic-lg);
     }
 
-    /* Diagonal Chapter Label Tag */
     .card-top {
       display: flex;
       justify-content: space-between;
@@ -337,11 +459,12 @@
     }
 
     .room-name {
-      font-family: 'Bangers', cursive;
+      font-family: var(--font-heading);
       font-size: 1.45rem;
       letter-spacing: 0.04em;
       line-height: 1.1;
       text-transform: uppercase;
+      color: var(--ink);
     }
 
     .room-meta {
@@ -350,9 +473,10 @@
       gap: 0.5rem;
       font-size: 0.75rem;
       font-weight: 800;
+      color: var(--text-muted);
     }
 
-    /* Comic Dot Status */
+    /* Badges */
     .comic-badge {
       display: inline-flex;
       align-items: center;
@@ -362,25 +486,33 @@
       font-weight: 900;
       font-size: 0.7rem;
       text-transform: uppercase;
-      box-shadow: 2px 2px 0 var(--ink);
+      box-shadow: var(--shadow-comic-xs);
+      border-radius: var(--border-radius-xs);
     }
 
     .badge-online {
       background: var(--green-safe);
+      color: var(--active-btn-color, var(--ink));
     }
 
     .badge-offline {
-      background: #ff4757;
+      background: var(--red-accent);
       color: #fff;
     }
 
     .badge-sim {
       background: var(--cyan-tech);
+      color: var(--active-btn-color, var(--ink));
     }
 
-    /* Simulation Bar: Speech / Action bubble */
+    .badge-lamp-off {
+      background: var(--btn-default-bg);
+      color: var(--text-muted);
+    }
+
+    /* Simulation Bar */
     .sim-controls {
-      background: #fdf2d0;
+      background: var(--sim-bg);
       border: 2px dashed var(--ink);
       padding: 0.6rem 0.8rem;
       display: flex;
@@ -389,9 +521,11 @@
       gap: 0.5rem;
       font-size: 0.75rem;
       font-weight: 800;
+      border-radius: var(--border-radius-sm);
+      color: var(--ink);
     }
 
-    /* Status Display Panels (Dual comic blocks) */
+    /* Status Display Panels */
     .status-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -404,18 +538,21 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 3px 3px 0 var(--ink);
+      box-shadow: var(--shadow-comic-sm);
       position: relative;
-      background: #fafafa;
+      background: var(--box-bg);
+      color: var(--ink);
+      border-radius: var(--border-radius-sm);
+      transition: background-color 0.15s ease, border-color 0.15s ease;
     }
 
     .status-panel-box.occupied {
-      background: #fff1b8;
-      border-color: var(--ink);
+      background: var(--box-occupied-bg) !important;
+      border-color: var(--box-occupied-border) !important;
     }
 
     .status-panel-box.lamp-active {
-      background: #ffe680;
+      background: var(--box-lamp-bg) !important;
     }
 
     .box-header {
@@ -425,13 +562,14 @@
       font-size: 0.7rem;
       font-weight: 900;
       text-transform: uppercase;
-      border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
+      border-bottom: 2px dashed var(--border-dashed);
       padding-bottom: 0.3rem;
       margin-bottom: 0.4rem;
+      color: var(--ink);
     }
 
     .sfx-text {
-      font-family: 'Bangers', cursive;
+      font-family: var(--font-heading);
       font-size: 1.5rem;
       letter-spacing: 0.03em;
       text-transform: uppercase;
@@ -440,68 +578,76 @@
       display: flex;
       align-items: center;
       gap: 0.35rem;
+      color: var(--ink);
     }
 
     .sfx-sub {
       font-size: 0.7rem;
       font-weight: 800;
       text-transform: uppercase;
-      color: #333;
+      color: var(--text-muted);
     }
 
-    /* Comic Onomatopoeia sound bubble */
     .sfx-bubble {
       display: inline-block;
       background: var(--red-accent);
       color: #fff;
-      font-family: 'Bangers', cursive;
+      font-family: var(--font-heading);
       font-size: 0.75rem;
       letter-spacing: 0.05em;
       padding: 0.1rem 0.4rem;
       border: 2px solid var(--ink);
-      transform: rotate(-6deg);
+      transform: var(--bubble-transform);
+      border-radius: var(--border-radius-xs);
     }
 
     .sfx-bubble.green {
       background: var(--green-safe);
-      color: var(--ink);
+      color: var(--active-btn-color, var(--ink));
     }
 
-    /* Mode Buttons (Segmented Action Strip) */
+    .sfx-bubble.bubble-off {
+      background: var(--text-muted);
+      color: #fff;
+    }
+
+    /* Mode Buttons Strip */
     .mode-comic-group {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 0.4rem;
-      background: var(--ink);
+      background: var(--mode-group-bg);
       padding: 0.35rem;
       border: var(--border-thick);
-      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: var(--shadow-comic-sm);
+      border-radius: var(--border-radius-sm);
     }
 
     .mode-comic-group button {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-body);
       font-weight: 900;
       font-size: 0.75rem;
       text-transform: uppercase;
       padding: 0.5rem 0.25rem;
       border: 2px solid var(--ink);
-      background: #fff;
-      color: var(--ink);
+      background: var(--btn-default-bg);
+      color: var(--btn-default-color);
       cursor: pointer;
       transition: all 0.1s;
+      border-radius: var(--border-radius-xs);
     }
 
     .mode-comic-group button:hover {
-      background: #eee;
+      background: var(--mode-btn-hover);
     }
 
     .mode-comic-group button.active {
       background: var(--yellow-action);
+      color: var(--active-btn-color, var(--ink));
       font-weight: 900;
       box-shadow: inset 2px 2px 0 var(--ink);
     }
 
-    /* Card Footer with screentone strip */
     .room-footer {
       display: flex;
       justify-content: space-between;
@@ -510,15 +656,17 @@
       font-weight: 800;
       border-top: var(--border-thick);
       padding-top: 0.65rem;
-      background: #fff;
+      background: var(--panel-bg);
+      color: var(--text-muted);
     }
 
-    /* Activity Log: Comic Script Table */
+    /* Table / Activity Log */
     .log-panel-wrap {
       border: var(--border-thick);
       overflow-x: auto;
-      background: #fff;
-      box-shadow: 3px 3px 0 var(--ink);
+      background: var(--panel-bg);
+      box-shadow: var(--shadow-comic-sm);
+      border-radius: var(--border-radius-sm);
     }
 
     table {
@@ -526,28 +674,30 @@
       border-collapse: collapse;
       font-size: 0.8rem;
       text-align: left;
+      color: var(--ink);
     }
 
     th {
-      background: var(--ink);
-      color: #fff;
-      font-family: 'Space Grotesk', sans-serif;
+      background: var(--table-th-bg);
+      color: var(--table-th-color);
+      font-family: var(--font-body);
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       padding: 0.65rem 0.85rem;
-      border-right: 2px solid #333;
+      border-right: 2px solid var(--table-border);
     }
 
     td {
       padding: 0.6rem 0.85rem;
-      border-bottom: 2px solid var(--ink);
-      border-right: 2px solid var(--ink);
+      border-bottom: 2px solid var(--table-border);
+      border-right: 2px solid var(--table-border);
       font-weight: 700;
+      color: var(--ink);
     }
 
     tr:nth-child(even) td {
-      background: #fbf9f4;
+      background: var(--table-zebra);
     }
 
     /* Guide / Tutorial Styles */
@@ -558,10 +708,12 @@
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       position: relative;
+      border-radius: var(--border-radius);
+      color: var(--ink);
     }
 
     .guide-box h2 {
-      font-family: 'Bangers', cursive;
+      font-family: var(--font-heading);
       font-size: 1.6rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -571,6 +723,7 @@
       margin-bottom: 1rem;
       border-bottom: var(--border-thick);
       padding-bottom: 0.5rem;
+      color: var(--ink);
     }
 
     .guide-list {
@@ -597,13 +750,15 @@
       width: 1.7rem;
       height: 1.7rem;
       background: var(--yellow-action);
+      color: var(--active-btn-color, var(--ink));
       border: 2px solid var(--ink);
-      box-shadow: 2px 2px 0 var(--ink);
-      font-family: 'Bangers', cursive;
+      box-shadow: var(--shadow-comic-xs);
+      font-family: var(--font-heading);
       font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: var(--border-radius-xs);
     }
 
     pre {
@@ -617,32 +772,467 @@
       line-height: 1.5;
       margin-top: 1rem;
       max-height: 420px;
+      border-radius: var(--border-radius-sm);
     }
 
     .hidden {
       display: none !important;
+    }
+
+    /* ========================================================
+       MODAL: THEME STUDIO STYLING
+       ======================================================== */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 940px;
+      max-height: 90vh;
+      overflow-y: auto;
+      margin: auto;
+      background: var(--panel-bg);
+      border: var(--border-heavy);
+      box-shadow: var(--shadow-comic-lg);
+      border-radius: var(--border-radius);
+      position: relative;
+      color: var(--ink);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-thick);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .modal-subtitle {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .modal-subtabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: var(--border-thick);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.25rem;
+      overflow-x: auto;
+    }
+
+    .modal-subtabs button {
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      border: var(--border-thick);
+      background: var(--btn-default-bg);
+      color: var(--ink);
+      cursor: pointer;
+      box-shadow: var(--shadow-comic-xs);
+      transition: all 0.1s;
+      border-radius: var(--border-radius-xs);
+      white-space: nowrap;
+    }
+
+    .modal-subtabs button.active {
+      background: var(--yellow-action);
+      color: var(--active-btn-color, var(--ink));
+      transform: translate(-1px, -1px);
+      box-shadow: var(--shadow-comic-sm);
+    }
+
+    /* Preset Grid */
+    .preset-theme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .preset-card {
+      border: var(--border-thick);
+      padding: 1rem;
+      background: var(--box-bg);
+      box-shadow: var(--shadow-comic-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.1s, box-shadow 0.1s;
+      border-radius: var(--border-radius-sm);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .preset-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-comic);
+    }
+
+    .preset-card.active-theme-card {
+      border-color: var(--yellow-action);
+      outline: 2px solid var(--yellow-action);
+      box-shadow: var(--shadow-comic);
+    }
+
+    .preset-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .preset-name {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+    }
+
+    .swatch-row {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+    }
+
+    .swatch-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--ink);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    /* Creator Layout */
+    .creator-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 840px) {
+      .creator-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+      color: var(--ink);
+    }
+
+    .section-subhead {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 2px dashed var(--border-dashed);
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .color-pickers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .color-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .color-item label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .color-input-pair {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .color-input-pair input[type="color"] {
+      width: 38px;
+      height: 34px;
+      padding: 0;
+      border: 2px solid var(--ink);
+      cursor: pointer;
+      box-shadow: var(--shadow-comic-xs);
+      border-radius: var(--border-radius-xs);
+    }
+
+    .color-hex-input {
+      flex: 1;
+      padding: 0.4rem 0.5rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .style-controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .style-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .style-item label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .creator-btn-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    /* Live Preview Box */
+    .creator-preview-wrap {
+      border: var(--border-thick);
+      padding: 1rem;
+      background: var(--paper);
+      box-shadow: var(--shadow-comic-sm);
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--border-radius-sm);
+      position: sticky;
+      top: 0;
+    }
+
+    .preview-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      background: var(--ink);
+      color: #fff;
+      margin-bottom: 0.75rem;
+      border-radius: var(--border-radius-xs);
+    }
+
+    .preview-mini-card {
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: all 0.15s ease;
+    }
+
+    .preview-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      padding-bottom: 0.5rem;
+    }
+
+    .preview-room-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .preview-room-meta {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      margin-top: 0.2rem;
+    }
+
+    .preview-badge-status {
+      font-size: 0.65rem;
+      font-weight: 900;
+      padding: 0.1rem 0.35rem;
+      border-width: 1px;
+      border-style: solid;
+      text-transform: uppercase;
+    }
+
+    .preview-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0.15rem 0.35rem;
+      border-width: 1px;
+      border-style: solid;
+    }
+
+    .preview-status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .preview-status-cell {
+      padding: 0.5rem;
+      border-width: 2px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .preview-cell-lbl {
+      font-size: 0.6rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .preview-cell-val {
+      font-size: 0.95rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .preview-sfx {
+      font-size: 0.65rem;
+      padding: 0.05rem 0.3rem;
+      border-width: 1px;
+      border-style: solid;
+      display: inline-block;
+    }
+
+    .preview-mode-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.25rem;
+      padding: 0.25rem;
+      border-width: 2px;
+      border-style: solid;
+    }
+
+    .preview-mode-btn {
+      font-size: 0.65rem;
+      font-weight: 900;
+      padding: 0.3rem 0.1rem;
+      border-width: 1px;
+      border-style: solid;
+      cursor: default;
+      text-align: center;
+    }
+
+    .preview-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      font-weight: 800;
+      border-top-width: 1px;
+      border-top-style: solid;
+      padding-top: 0.4rem;
+    }
+
+    /* Saved Themes List */
+    .saved-themes-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .custom-theme-item {
+      border: var(--border-thick);
+      padding: 0.85rem 1rem;
+      background: var(--box-bg);
+      box-shadow: var(--shadow-comic-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border-radius: var(--border-radius-sm);
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <!-- HEADER -->
+    <!-- ========================================================
+         HEADER DENGAN QUICK THEME SWITCHER
+         ======================================================== -->
     <header>
       <div class="brand-group">
         <div class="manga-stamp">SISNAM</div>
         <div class="brand-text">
-          <h1>Pusat kontrol</h1>
+          <h1>Pusat kontrol <span class="kanji">局</span></h1>
           <p>ESP32 mmWave Radar &amp; Smart Relay Controller</p>
         </div>
       </div>
-      <div class="nav-tabs">
-        <button id="tabBtnMonitor" class="active">CHAPTER 1: MONITORING</button>
-        <button id="tabBtnGuide">CHAPTER 2: SCHEMATICS &amp; CODE</button>
+
+      <div class="header-right-actions">
+        <!-- Quick Theme Bar -->
+        <div class="theme-bar-wrap">
+          <label for="themeSelector" class="theme-label">
+            <span>🎨</span> TEMA:
+          </label>
+          <select id="themeSelector" class="theme-dropdown" aria-label="Pilih Tema Antarmuka">
+            <!-- Populated dynamically via JS -->
+          </select>
+          <button id="btnOpenThemeModal" class="btn-comic btn-sm btn-theme-manage" title="Buka Studio Pembuat Tema">
+            ⚙️ ATUR &amp; BUAT
+          </button>
+        </div>
+
+        <!-- Chapter Navigation Tabs -->
+        <div class="nav-tabs">
+          <button id="tabBtnMonitor" class="active">CHAPTER 1: MONITORING</button>
+          <button id="tabBtnGuide">CHAPTER 2: SCHEMATICS &amp; CODE</button>
+        </div>
       </div>
     </header>
 
-    <!-- VIEW 1: DASHBOARD MONITORING -->
+    <!-- ========================================================
+         VIEW 1: DASHBOARD MONITORING
+         ======================================================== -->
     <div id="viewMonitor">
       <!-- Toolbar / Tambah Ruangan -->
       <div class="manga-panel">
@@ -673,96 +1263,15 @@
 
       <!-- Grid Ruangan -->
       <div id="roomsContainer" class="rooms-grid">
-        <div class="room-card" id="card-room-1794881535820">
-          <div class="card-top">
-            <div class="room-title-area">
-              <div class="room-name">Sisnam Prototype</div>
-              <div class="room-meta">
-                <span class="comic-badge badge-online" id="conn-room-1794881535820">
-                  ONLINE&nbsp;</span>
-                <span class="mono" id="ip-label-room-1794881535820">172.23.109.56</span>
-              </div>
-            </div>
-            <div style="display: flex; gap: 0.35rem; align-items: center;">
-              <select data-action="source" data-id="room-1794881535820"
-                style="padding: 0.2rem 0.4rem; font-size: 0.75rem;">
-                <option value="LIVE" selected="">LIVE</option>
-                <option value="SIM">SIM</option>
-              </select>
-              <button class="btn-comic btn-sm" data-action="edit-ip" data-id="room-1794881535820"
-                title="Edit Data">EDIT</button>
-              <button class="btn-comic btn-danger btn-sm" data-action="delete" data-id="room-1794881535820"
-                title="Hapus Node">×</button>
-            </div>
-          </div>
-
-          <!-- SIM CONTROL BAR -->
-          <div id="simbar-room-1794881535820" class="sim-controls hidden">
-            <span>RADAR SIMULATION:</span>
-            <div style="display: flex; gap: 0.35rem;">
-              <button class="btn-comic btn-sm btn-primary" data-action="sim-high" data-id="room-1794881535820">+ ADA
-                ORANG</button>
-              <button class="btn-comic btn-sm" data-action="sim-low" data-id="room-1794881535820">- KOSONG</button>
-            </div>
-          </div>
-
-          <!-- STATUS DUAL PANELS -->
-          <div class="status-row">
-            <div class="status-panel-box occupied">
-              <div class="box-header">
-                <span>Sensor RADAR&nbsp;</span>
-                <span class="mono" id="gpio-radar-room-1794881535820"><br></span>
-              </div>
-              <div>
-                <div class="sfx-text" id="occ-val-room-1794881535820">
-                  <span class="sfx-bubble">DONN!!</span> TERISI
-                </div>
-                <div class="sfx-sub" id="occ-desc-room-1794881535820">
-                  Target detected in zone
-                </div>
-              </div>
-            </div>
-
-            <div class="status-panel-box ">
-              <div class="box-header">
-                <span>RELAY LAMPU</span>
-                <span class="mono" id="gpio-relay-room-1794881535820"><br></span>
-              </div>
-              <div>
-                <div class="sfx-text" id="lamp-val-room-1794881535820">
-                  <span class="sfx-bubble" style="background:#555;">KACHI</span> MATI
-                </div>
-                <div class="sfx-sub" id="lamp-desc-room-1794881535820">
-                  Relay Idle: HIGH
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- MODE SWITCHER -->
-          <div class="mode-comic-group">
-            <button data-action="mode" data-mode="AUTO" data-id="room-1794881535820"
-              id="btn-auto-room-1794881535820">OTOMATIS</button>
-            <button data-action="mode" data-mode="ON" data-id="room-1794881535820" id="btn-on-room-1794881535820">PAKSA
-              ON</button>
-            <button data-action="mode" data-mode="OFF" data-id="room-1794881535820" id="btn-off-room-1794881535820"
-              class="active">PAKSA OFF</button>
-          </div>
-
-          <div class="room-footer">
-            <span>DURASI AKTIF: <strong class="mono" id="dur-room-1794881535820">00:02:22</strong></span>
-            <span>TRIGGER: <strong class="mono" id="det-room-1794881535820">1x</strong></span>
-          </div>
-        </div>
+        <!-- Rendered by JS -->
       </div>
 
       <!-- Activity Log -->
       <div class="manga-panel" style="margin-top: 1rem;">
         <div class="panel-ribbon">RIWAYAT AKTIVITAS</div>
         <div
-          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; margin-top: 0.5rem;">
-          <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">Realtime Hardware Events
-            Transmission</span>
+          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; margin-top: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">Realtime Hardware Events Transmission</span>
           <button id="btnClearLog" class="btn-comic btn-sm">BERSIHKAN LOG</button>
         </div>
         <div class="log-panel-wrap">
@@ -779,20 +1288,7 @@
             </thead>
             <tbody id="logBody" class="mono">
               <tr>
-                <td>16:21:30</td>
-                <td style="font-weight: 900; font-family: 'Space Grotesk';">Sisnam Prototype</td>
-                <td>172.23.109.56</td>
-                <td>
-                  <span class="comic-badge badge-offline">
-                    TERISI (ADA ORANG)
-                  </span>
-                </td>
-                <td>
-                  <span class="comic-badge" style="background:#e5e5e5;">
-                    PADAM (OFF)
-                  </span>
-                </td>
-                <td style="font-family: 'Space Grotesk';">Sistem inisialisasi: Mode Standalone / Aplikasi Aktif</td>
+                <td colspan="6" style="text-align: center; padding: 1.5rem; color: var(--text-muted);">BELUM ADA AKTIVITAS DETEKSI</td>
               </tr>
             </tbody>
           </table>
@@ -800,12 +1296,14 @@
       </div>
     </div>
 
-    <!-- VIEW 2: GUIDE & TUTORIAL -->
+    <!-- ========================================================
+         VIEW 2: GUIDE & TUTORIAL
+         ======================================================== -->
     <div id="viewGuide" class="hidden">
       <div class="guide-box">
         <div class="panel-ribbon">SCHEMATICS // WIRING PINOUT</div>
         <h2>1. SKEMA RANGKAIAN PIN ESP32 &amp; HARDWARE</h2>
-        <p style="font-weight: 700; margin-bottom: 1rem; color: #444;">
+        <p style="font-weight: 700; margin-bottom: 1rem; color: var(--text-muted);">
           Koneksi modul radar HLK-LD2410C dan modul Relay ke pin GPIO ESP32:
         </p>
         <div class="log-panel-wrap">
@@ -838,7 +1336,7 @@
 
       <div class="guide-box">
         <div class="panel-ribbon">SOURCE CODE // ARDUINO SKETCH</div>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
           <h2>2. FIRMWARE sisnam_esp32.ino</h2>
           <button id="btnCopyIno" class="btn-comic btn-primary btn-sm">SALIN KODE .INO</button>
         </div>
@@ -939,9 +1437,1453 @@ void loop() {
     </div>
   </div>
 
+  <!-- ========================================================
+       MODAL: STUDIO PEMBUAT & PENGELOLA TEMA
+       ======================================================== -->
+  <div id="themeStudioModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card manga-panel">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.6rem;">🎨</span>
+          <div>
+            <h2 id="modalTitle" class="modal-title">STUDIO TEMA SISNAM</h2>
+            <p class="modal-subtitle">Pilih preset favorit atau rancang tema baru sesuai imajinasimu</p>
+          </div>
+        </div>
+        <button id="btnCloseThemeModal" class="btn-comic btn-sm btn-danger" aria-label="Tutup Dialog" style="font-size: 1.1rem; padding: 0.2rem 0.65rem;">✕</button>
+      </div>
+
+      <!-- MODAL TABS -->
+      <div class="modal-subtabs">
+        <button id="tabThemePresets" class="active">✨ PRESET PILIHAN</button>
+        <button id="tabThemeCreator">🛠️ BUAT TEMA SENDIRI</button>
+        <button id="tabThemeCustomList">📂 TEMA TERSIMPAN (<span id="customThemeCount">0</span>)</button>
+      </div>
+
+      <!-- SECTION 1: PRESETS GALLERY -->
+      <div id="themeSecPresets">
+        <p style="font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-muted);">
+          Klik salah satu tema di bawah ini untuk langsung menerapkannya ke antarmuka:
+        </p>
+        <div id="presetGrid" class="preset-theme-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- SECTION 2: THEME CREATOR -->
+      <div id="themeSecCreator" class="hidden">
+        <div class="creator-layout">
+          <!-- LEFT: FORM CONTROLS -->
+          <div class="creator-form-wrap">
+            <div style="margin-bottom: 0.85rem;">
+              <label class="form-label" for="customThemeName">Nama Tema Kustom</label>
+              <input type="text" id="customThemeName" placeholder="Contoh: Sunset Vaporwave / Cyber Gold" style="width: 100%;" required>
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label class="form-label" for="basePresetSelect">Mulai Dari Template Dasar</label>
+              <select id="basePresetSelect" style="width: 100%;">
+                <option value="manga">💥 Manga / Komik (Stitch Default)</option>
+                <option value="cyberpunk">⚡ Cyberpunk Neon (Dark)</option>
+                <option value="modern-dark">🌌 Modern Slate (Dark)</option>
+                <option value="clean-studio">☕ Clean Studio (Light)</option>
+                <option value="arcade">👾 Retro 8-Bit Arcade</option>
+                <option value="matrix">🌿 Matrix Hacker Terminal</option>
+                <option value="nordic">🧊 Nordic Frost Aurora</option>
+                <option value="dracula">🧛 Dracula Vampire Dark</option>
+              </select>
+            </div>
+
+            <h4 class="section-subhead">PALET WARNA KUSTOM</h4>
+            <div class="color-pickers-grid">
+              <div class="color-item">
+                <label for="colorPaper">Latar Halaman</label>
+                <div class="color-input-pair">
+                  <input type="color" id="colorPaper" value="#fbf7ee">
+                  <input type="text" id="colorPaperHex" value="#fbf7ee" class="mono color-hex-input">
+                </div>
+              </div>
+
+              <div class="color-item">
+                <label for="colorPanel">Latar Kartu / Panel</label>
+                <div class="color-input-pair">
+                  <input type="color" id="colorPanel" value="#ffffff">
+                  <input type="text" id="colorPanelHex" value="#ffffff" class="mono color-hex-input">
+                </div>
+              </div>
+
+              <div class="color-item">
+                <label for="colorInk">Warna Teks &amp; Border</label>
+                <div class="color-input-pair">
+                  <input type="color" id="colorInk" value="#0d0d0d">
+                  <input type="text" id="colorInkHex" value="#0d0d0d" class="mono color-hex-input">
+                </div>
+              </div>
+
+              <div class="color-item">
+                <label for="colorYellow">Aksen Tombol / Sorotan</label>
+                <div class="color-input-pair">
+                  <input type="color" id="colorYellow" value="#ffe600">
+                  <input type="text" id="colorYellowHex" value="#ffe600" class="mono color-hex-input">
+                </div>
+              </div>
+
+              <div class="color-item">
+                <label for="colorRed">Aksen Bahaya / Terisi</label>
+                <div class="color-input-pair">
+                  <input type="color" id="colorRed" value="#ff2a2a">
+                  <input type="text" id="colorRedHex" value="#ff2a2a" class="mono color-hex-input">
+                </div>
+              </div>
+
+              <div class="color-item">
+                <label for="colorGreen">Status Online / Aman</label>
+                <div class="color-input-pair">
+                  <input type="color" id="colorGreen" value="#00e575">
+                  <input type="text" id="colorGreenHex" value="#00e575" class="mono color-hex-input">
+                </div>
+              </div>
+
+              <div class="color-item">
+                <label for="colorCyan">Aksen Sinyal / Simulasi</label>
+                <div class="color-input-pair">
+                  <input type="color" id="colorCyan" value="#00f0ff">
+                  <input type="text" id="colorCyanHex" value="#00f0ff" class="mono color-hex-input">
+                </div>
+              </div>
+            </div>
+
+            <h4 class="section-subhead" style="margin-top: 1rem;">TIPOGRAFI &amp; GAYA BENTUK</h4>
+            <div class="style-controls-grid">
+              <div class="style-item">
+                <label for="styleFontHeading">Font Judul</label>
+                <select id="styleFontHeading">
+                  <option value="bangers">Bangers (Gaya Komik)</option>
+                  <option value="space">Space Grotesk (Modern)</option>
+                  <option value="orbitron">Orbitron (Futuristik/Tech)</option>
+                  <option value="mono">JetBrains Mono (Terminal/Code)</option>
+                </select>
+              </div>
+
+              <div class="style-item">
+                <label for="styleRadius">Bentuk Sudut</label>
+                <select id="styleRadius">
+                  <option value="sharp">Kotak Tajam (0px - Komik/Retro)</option>
+                  <option value="rounded">Membulat Halus (8px - Modern)</option>
+                  <option value="pill">Sangat Bulat (14px - Soft)</option>
+                </select>
+              </div>
+
+              <div class="style-item">
+                <label for="styleShadow">Gaya Bayangan</label>
+                <select id="styleShadow">
+                  <option value="comic">Solid Hard Shadow (Komik)</option>
+                  <option value="neon">Neon Glow (Cyberpunk)</option>
+                  <option value="modern">Soft Diffused (Modern)</option>
+                  <option value="none">Tanpa Bayangan (Flat)</option>
+                </select>
+              </div>
+
+              <div class="style-item">
+                <label for="stylePattern">Tekstur Latar</label>
+                <select id="stylePattern">
+                  <option value="halftone">Titik Halftone Manga</option>
+                  <option value="grid">Grid Kotak Digital Tech</option>
+                  <option value="scanlines">Garis CRT Scanline</option>
+                  <option value="clean-dot">Titik Halus Modern</option>
+                  <option value="none">Polos Bersih (Clean)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="creator-btn-row">
+              <button id="btnSaveCustomTheme" class="btn-comic btn-primary" style="flex: 2;">
+                💾 SIMPAN &amp; TERAPKAN TEMA
+              </button>
+              <button id="btnResetCreator" class="btn-comic" style="flex: 1;">
+                ↺ RESET
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT: LIVE INTERACTIVE PREVIEW -->
+          <div class="creator-preview-wrap">
+            <span class="preview-badge">LIVE PREVIEW SAMPEL</span>
+            <div id="livePreviewContainer" class="preview-card-box">
+              <div class="preview-mini-card">
+                <div class="preview-card-top">
+                  <div>
+                    <div class="preview-room-title">RUANG SAMPLE</div>
+                    <div class="preview-room-meta">
+                      <span class="preview-badge-status">ONLINE (-55 dBm)</span>
+                      <span class="mono" style="font-size:0.7rem;">192.168.1.100</span>
+                    </div>
+                  </div>
+                  <span class="preview-tag">LIVE</span>
+                </div>
+
+                <div class="preview-status-grid">
+                  <div class="preview-status-cell preview-cell-occupied">
+                    <div class="preview-cell-lbl">RADAR SENSOR</div>
+                    <div class="preview-cell-val"><span class="preview-sfx">DONN!</span> TERISI</div>
+                  </div>
+                  <div class="preview-status-cell preview-cell-lamp">
+                    <div class="preview-cell-lbl">RELAY LAMPU</div>
+                    <div class="preview-cell-val"><span class="preview-sfx">PIKA!</span> NYALA</div>
+                  </div>
+                </div>
+
+                <div class="preview-mode-bar">
+                  <button class="preview-mode-btn">AUTO</button>
+                  <button class="preview-mode-btn preview-mode-active">PAKSA ON</button>
+                  <button class="preview-mode-btn">OFF</button>
+                </div>
+
+                <div class="preview-footer">
+                  <span>DURASI: 00:15:30</span>
+                  <span>TRIGGER: 3x</span>
+                </div>
+              </div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.6rem;">
+              Preview kartu mini di atas otomatis menyesuaikan warna dan gaya yang kamu ubah secara real-time.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: SAVED CUSTOM THEMES -->
+      <div id="themeSecCustomList" class="hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <p style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin: 0;">
+            Daftar tema kustom yang tersimpan di browsermu:
+          </p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button id="btnExportThemes" class="btn-comic btn-sm">📤 EKSPOR JSON</button>
+            <button id="btnImportThemes" class="btn-comic btn-sm">📥 IMPOR JSON</button>
+          </div>
+        </div>
+
+        <div id="savedThemesList" class="saved-themes-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       APPLICATION & THEME SYSTEM JAVASCRIPT
+       ======================================================== -->
   <script>
     (function () {
-      // Data awal mengambil dari template/mockup atau sync
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, s => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[s]));
+      }
+
+      function formatDuration(ms) {
+        const s = Math.max(0, Math.floor(ms / 1000));
+        const h = String(Math.floor(s / 3600)).padStart(2, '0');
+        const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+        const sec = String(s % 60).padStart(2, '0');
+        return `${h}:${m}:${sec}`;
+      }
+
+      // ----------------------------------------------------
+      // PRESET THEMES CATALOG
+      // ----------------------------------------------------
+      const PRESET_THEMES = {
+        'manga': {
+          id: 'manga',
+          name: '💥 Manga / Komik (Stitch)',
+          description: 'Tema asli Google Stitch berorientasi manga screentone, teks Bangers, dan drop-shadow komik.',
+          category: 'comic',
+          previewColors: ['#fbf7ee', '#ffffff', '#0d0d0d', '#ffe600', '#ff2a2a'],
+          variables: {
+            '--ink': '#0d0d0d',
+            '--paper': '#fbf7ee',
+            '--panel-bg': '#ffffff',
+            '--text-muted': '#555555',
+            '--yellow-action': '#ffe600',
+            '--red-accent': '#ff2a2a',
+            '--green-safe': '#00e575',
+            '--cyan-tech': '#00f0ff',
+            '--input-bg': '#ffffff',
+            '--input-color': '#0d0d0d',
+            '--input-focus-bg': '#fffef2',
+            '--btn-default-bg': '#ffffff',
+            '--btn-default-color': '#0d0d0d',
+            '--active-btn-color': '#0d0d0d',
+            '--box-bg': '#fafafa',
+            '--box-occupied-bg': '#fff1b8',
+            '--box-occupied-border': '#0d0d0d',
+            '--box-lamp-bg': '#ffe680',
+            '--sim-bg': '#fdf2d0',
+            '--mode-group-bg': '#0d0d0d',
+            '--mode-btn-hover': '#eeeeee',
+            '--nav-bg': '#fbf7ee',
+            '--nav-hover-bg': '#efe9dc',
+            '--ribbon-bg': '#0d0d0d',
+            '--ribbon-color': '#ffffff',
+            '--table-th-bg': '#0d0d0d',
+            '--table-th-color': '#ffffff',
+            '--table-border': '#0d0d0d',
+            '--table-zebra': '#fbf9f4',
+            '--border-dashed': 'rgba(0, 0, 0, 0.2)',
+            '--border-thick': '3px solid #0d0d0d',
+            '--border-heavy': '4px solid #0d0d0d',
+            '--border-radius': '0px',
+            '--border-radius-sm': '0px',
+            '--border-radius-xs': '0px',
+            '--shadow-comic': '5px 5px 0px #0d0d0d',
+            '--shadow-comic-sm': '3px 3px 0px #0d0d0d',
+            '--shadow-comic-lg': '8px 8px 0px #0d0d0d',
+            '--shadow-comic-xs': '2px 2px 0px #0d0d0d',
+            '--font-heading': "'Bangers', cursive",
+            '--font-body': "'Space Grotesk', sans-serif",
+            '--font-mono': "'JetBrains Mono', monospace",
+            '--bg-pattern': 'radial-gradient(#0d0d0d 12%, transparent 13%)',
+            '--bg-pattern-size': '14px 14px',
+            '--header-speedlines': 'repeating-conic-gradient(from 0deg, rgba(0, 0, 0, 0.04) 0deg 10deg, transparent 10deg 20deg)',
+            '--stamp-transform': 'rotate(-4deg)',
+            '--bubble-transform': 'rotate(-6deg)'
+          }
+        },
+        'cyberpunk': {
+          id: 'cyberpunk',
+          name: '⚡ Cyberpunk Neon (Dark)',
+          description: 'Obsidian gelap pekat dengan pendaran neon cyan dan magenta futuristik berkilau.',
+          category: 'dark',
+          previewColors: ['#08090f', '#121420', '#00f0ff', '#ff0055', '#00ff9d'],
+          variables: {
+            '--ink': '#e2f7ff',
+            '--paper': '#08090f',
+            '--panel-bg': '#121420',
+            '--text-muted': '#7f93aa',
+            '--yellow-action': '#00f0ff',
+            '--red-accent': '#ff0055',
+            '--green-safe': '#00ff9d',
+            '--cyan-tech': '#bd00ff',
+            '--input-bg': '#191d2c',
+            '--input-color': '#00f0ff',
+            '--input-focus-bg': '#1f2538',
+            '--btn-default-bg': '#191d2c',
+            '--btn-default-color': '#e2f7ff',
+            '--active-btn-color': '#08090f',
+            '--box-bg': '#161928',
+            '--box-occupied-bg': '#331224',
+            '--box-occupied-border': '#ff0055',
+            '--box-lamp-bg': '#143040',
+            '--sim-bg': '#1c2033',
+            '--mode-group-bg': '#08090f',
+            '--mode-btn-hover': '#242a3f',
+            '--nav-bg': '#121420',
+            '--nav-hover-bg': '#1d2235',
+            '--ribbon-bg': '#00f0ff',
+            '--ribbon-color': '#08090f',
+            '--table-th-bg': '#191d2c',
+            '--table-th-color': '#00f0ff',
+            '--table-border': '#272d42',
+            '--table-zebra': '#141724',
+            '--border-dashed': 'rgba(0, 240, 255, 0.3)',
+            '--border-thick': '2px solid #00f0ff',
+            '--border-heavy': '2px solid #00f0ff',
+            '--border-radius': '4px',
+            '--border-radius-sm': '4px',
+            '--border-radius-xs': '3px',
+            '--shadow-comic': '0 0 16px rgba(0, 240, 255, 0.25), 0 4px 10px rgba(0,0,0,0.6)',
+            '--shadow-comic-sm': '0 0 10px rgba(0, 240, 255, 0.2)',
+            '--shadow-comic-lg': '0 0 26px rgba(0, 240, 255, 0.45)',
+            '--shadow-comic-xs': '0 0 6px rgba(0, 240, 255, 0.25)',
+            '--font-heading': "'Orbitron', sans-serif",
+            '--font-body': "'Space Grotesk', sans-serif",
+            '--font-mono': "'JetBrains Mono', monospace",
+            '--bg-pattern': 'linear-gradient(rgba(0, 240, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.06) 1px, transparent 1px)',
+            '--bg-pattern-size': '26px 26px',
+            '--header-speedlines': 'none',
+            '--stamp-transform': 'none',
+            '--bubble-transform': 'none'
+          }
+        },
+        'modern-dark': {
+          id: 'modern-dark',
+          name: '🌌 Modern Slate (Dark)',
+          description: 'Antarmuka modern gaya dashboard SaaS dengan nuansa slate navy gelap dan bayangan halus.',
+          category: 'dark',
+          previewColors: ['#0f172a', '#1e293b', '#38bdf8', '#ef4444', '#10b981'],
+          variables: {
+            '--ink': '#f1f5f9',
+            '--paper': '#0f172a',
+            '--panel-bg': '#1e293b',
+            '--text-muted': '#94a3b8',
+            '--yellow-action': '#3b82f6',
+            '--red-accent': '#ef4444',
+            '--green-safe': '#10b981',
+            '--cyan-tech': '#06b6d4',
+            '--input-bg': '#0f172a',
+            '--input-color': '#f1f5f9',
+            '--input-focus-bg': '#1e293b',
+            '--btn-default-bg': '#334155',
+            '--btn-default-color': '#f1f5f9',
+            '--active-btn-color': '#ffffff',
+            '--box-bg': '#182234',
+            '--box-occupied-bg': '#3c1d24',
+            '--box-occupied-border': '#ef4444',
+            '--box-lamp-bg': '#1e3a47',
+            '--sim-bg': '#1b2537',
+            '--mode-group-bg': '#0f172a',
+            '--mode-btn-hover': '#475569',
+            '--nav-bg': '#1e293b',
+            '--nav-hover-bg': '#334155',
+            '--ribbon-bg': '#3b82f6',
+            '--ribbon-color': '#ffffff',
+            '--table-th-bg': '#0f172a',
+            '--table-th-color': '#38bdf8',
+            '--table-border': '#334155',
+            '--table-zebra': '#192337',
+            '--border-dashed': 'rgba(148, 163, 184, 0.25)',
+            '--border-thick': '1px solid #334155',
+            '--border-heavy': '1px solid #3b82f6',
+            '--border-radius': '10px',
+            '--border-radius-sm': '8px',
+            '--border-radius-xs': '6px',
+            '--shadow-comic': '0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3)',
+            '--shadow-comic-sm': '0 4px 6px -1px rgba(0, 0, 0, 0.3)',
+            '--shadow-comic-lg': '0 20px 25px -5px rgba(0, 0, 0, 0.5)',
+            '--shadow-comic-xs': '0 1px 3px rgba(0,0,0,0.2)',
+            '--font-heading': "'Space Grotesk', sans-serif",
+            '--font-body': "'Space Grotesk', sans-serif",
+            '--font-mono': "'JetBrains Mono', monospace",
+            '--bg-pattern': 'radial-gradient(#334155 1.5px, transparent 1.5px)',
+            '--bg-pattern-size': '24px 24px',
+            '--header-speedlines': 'none',
+            '--stamp-transform': 'none',
+            '--bubble-transform': 'none'
+          }
+        },
+        'clean-studio': {
+          id: 'clean-studio',
+          name: '☕ Clean Studio (Light)',
+          description: 'Desain terang bersih, minimalis profesional dengan aksen electric blue yang menenangkan.',
+          category: 'light',
+          previewColors: ['#f8fafc', '#ffffff', '#2563eb', '#dc2626', '#16a34a'],
+          variables: {
+            '--ink': '#0f172a',
+            '--paper': '#f8fafc',
+            '--panel-bg': '#ffffff',
+            '--text-muted': '#64748b',
+            '--yellow-action': '#2563eb',
+            '--red-accent': '#dc2626',
+            '--green-safe': '#16a34a',
+            '--cyan-tech': '#0284c7',
+            '--input-bg': '#f8fafc',
+            '--input-color': '#0f172a',
+            '--input-focus-bg': '#ffffff',
+            '--btn-default-bg': '#f1f5f9',
+            '--btn-default-color': '#0f172a',
+            '--active-btn-color': '#ffffff',
+            '--box-bg': '#f8fafc',
+            '--box-occupied-bg': '#fee2e2',
+            '--box-occupied-border': '#dc2626',
+            '--box-lamp-bg': '#fef3c7',
+            '--sim-bg': '#eff6ff',
+            '--mode-group-bg': '#e2e8f0',
+            '--mode-btn-hover': '#cbd5e1',
+            '--nav-bg': '#f1f5f9',
+            '--nav-hover-bg': '#e2e8f0',
+            '--ribbon-bg': '#2563eb',
+            '--ribbon-color': '#ffffff',
+            '--table-th-bg': '#f1f5f9',
+            '--table-th-color': '#0f172a',
+            '--table-border': '#e2e8f0',
+            '--table-zebra': '#f8fafc',
+            '--border-dashed': 'rgba(100, 116, 139, 0.25)',
+            '--border-thick': '1px solid #e2e8f0',
+            '--border-heavy': '1px solid #cbd5e1',
+            '--border-radius': '10px',
+            '--border-radius-sm': '8px',
+            '--border-radius-xs': '6px',
+            '--shadow-comic': '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05)',
+            '--shadow-comic-sm': '0 2px 4px rgba(0, 0, 0, 0.05)',
+            '--shadow-comic-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            '--shadow-comic-xs': '0 1px 2px rgba(0,0,0,0.05)',
+            '--font-heading': "'Space Grotesk', sans-serif",
+            '--font-body': "'Space Grotesk', sans-serif",
+            '--font-mono': "'JetBrains Mono', monospace",
+            '--bg-pattern': 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+            '--bg-pattern-size': '20px 20px',
+            '--header-speedlines': 'none',
+            '--stamp-transform': 'none',
+            '--bubble-transform': 'none'
+          }
+        },
+        'arcade': {
+          id: 'arcade',
+          name: '👾 Retro 8-Bit Arcade',
+          description: 'Gaya mesin arcade klasik tahun 90an dengan warna ungu neon, kuning retro, dan hot pink.',
+          category: 'dark',
+          previewColors: ['#120a2a', '#201242', '#ffd000', '#ff2a6d', '#05ffa1'],
+          variables: {
+            '--ink': '#ffffff',
+            '--paper': '#120a2a',
+            '--panel-bg': '#201242',
+            '--text-muted': '#b8a5e8',
+            '--yellow-action': '#ffd000',
+            '--red-accent': '#ff2a6d',
+            '--green-safe': '#05ffa1',
+            '--cyan-tech': '#00f0ff',
+            '--input-bg': '#120a2a',
+            '--input-color': '#ffd000',
+            '--input-focus-bg': '#2b1859',
+            '--btn-default-bg': '#2d1a5c',
+            '--btn-default-color': '#ffffff',
+            '--active-btn-color': '#120a2a',
+            '--box-bg': '#190e36',
+            '--box-occupied-bg': '#3e1234',
+            '--box-occupied-border': '#ff2a6d',
+            '--box-lamp-bg': '#3b2b10',
+            '--sim-bg': '#281752',
+            '--mode-group-bg': '#0c061d',
+            '--mode-btn-hover': '#3e247e',
+            '--nav-bg': '#201242',
+            '--nav-hover-bg': '#321d66',
+            '--ribbon-bg': '#ff2a6d',
+            '--ribbon-color': '#ffffff',
+            '--table-th-bg': '#0c061d',
+            '--table-th-color': '#ffd000',
+            '--table-border': '#432588',
+            '--table-zebra': '#1a0f37',
+            '--border-dashed': 'rgba(255, 208, 0, 0.3)',
+            '--border-thick': '3px solid #ff2a6d',
+            '--border-heavy': '3px solid #ffd000',
+            '--border-radius': '0px',
+            '--border-radius-sm': '0px',
+            '--border-radius-xs': '0px',
+            '--shadow-comic': '4px 4px 0px #ff2a6d, 6px 6px 0px #000',
+            '--shadow-comic-sm': '3px 3px 0px #ff2a6d',
+            '--shadow-comic-lg': '6px 6px 0px #ff2a6d, 9px 9px 0px #000',
+            '--shadow-comic-xs': '2px 2px 0px #ff2a6d',
+            '--font-heading': "'Space Grotesk', sans-serif",
+            '--font-body': "'Space Grotesk', sans-serif",
+            '--font-mono': "'JetBrains Mono', monospace",
+            '--bg-pattern': 'radial-gradient(#4a2b99 15%, transparent 16%)',
+            '--bg-pattern-size': '16px 16px',
+            '--header-speedlines': 'none',
+            '--stamp-transform': 'rotate(-3deg)',
+            '--bubble-transform': 'rotate(-3deg)'
+          }
+        },
+        'matrix': {
+          id: 'matrix',
+          name: '🌿 Matrix Hacker Terminal',
+          description: 'Nuansa layar terminal hacker hijau monokrom lengkap dengan efek scanline CRT retro.',
+          category: 'dark',
+          previewColors: ['#050805', '#09120a', '#00ff66', '#ff3333', '#00ffcc'],
+          variables: {
+            '--ink': '#00ff66',
+            '--paper': '#050805',
+            '--panel-bg': '#09120a',
+            '--text-muted': '#00aa44',
+            '--yellow-action': '#00ff66',
+            '--red-accent': '#ff3333',
+            '--green-safe': '#00ff66',
+            '--cyan-tech': '#00ffcc',
+            '--input-bg': '#050a06',
+            '--input-color': '#00ff66',
+            '--input-focus-bg': '#0e1a0f',
+            '--btn-default-bg': '#09120a',
+            '--btn-default-color': '#00ff66',
+            '--active-btn-color': '#050805',
+            '--box-bg': '#0b150c',
+            '--box-occupied-bg': '#1f1010',
+            '--box-occupied-border': '#ff3333',
+            '--box-lamp-bg': '#112613',
+            '--sim-bg': '#0d1a0e',
+            '--mode-group-bg': '#050805',
+            '--mode-btn-hover': '#132515',
+            '--nav-bg': '#09120a',
+            '--nav-hover-bg': '#132515',
+            '--ribbon-bg': '#00ff66',
+            '--ribbon-color': '#050805',
+            '--table-th-bg': '#050805',
+            '--table-th-color': '#00ff66',
+            '--table-border': '#00441a',
+            '--table-zebra': '#081008',
+            '--border-dashed': 'rgba(0, 255, 102, 0.3)',
+            '--border-thick': '2px solid #00aa44',
+            '--border-heavy': '2px solid #00ff66',
+            '--border-radius': '2px',
+            '--border-radius-sm': '2px',
+            '--border-radius-xs': '1px',
+            '--shadow-comic': '0 0 12px rgba(0, 255, 102, 0.35)',
+            '--shadow-comic-sm': '0 0 6px rgba(0, 255, 102, 0.25)',
+            '--shadow-comic-lg': '0 0 20px rgba(0, 255, 102, 0.5)',
+            '--shadow-comic-xs': '0 0 4px rgba(0, 255, 102, 0.2)',
+            '--font-heading': "'JetBrains Mono', monospace",
+            '--font-body': "'JetBrains Mono', monospace",
+            '--font-mono': "'JetBrains Mono', monospace",
+            '--bg-pattern': 'repeating-linear-gradient(0deg, rgba(0, 255, 102, 0.04), rgba(0, 255, 102, 0.04) 1px, transparent 1px, transparent 3px)',
+            '--bg-pattern-size': '100% 3px',
+            '--header-speedlines': 'none',
+            '--stamp-transform': 'none',
+            '--bubble-transform': 'none'
+          }
+        },
+        'nordic': {
+          id: 'nordic',
+          name: '🧊 Nordic Frost Aurora',
+          description: 'Palet kutub utara yang dingin, tenang dengan sentuhan aurora pastel lembut.',
+          category: 'dark',
+          previewColors: ['#1e222a', '#242933', '#88c0d0', '#bf616a', '#a3be8c'],
+          variables: {
+            '--ink': '#eceff4',
+            '--paper': '#1e222a',
+            '--panel-bg': '#242933',
+            '--text-muted': '#9ba6b8',
+            '--yellow-action': '#88c0d0',
+            '--red-accent': '#bf616a',
+            '--green-safe': '#a3be8c',
+            '--cyan-tech': '#81a1c1',
+            '--input-bg': '#1e222a',
+            '--input-color': '#eceff4',
+            '--input-focus-bg': '#2e3440',
+            '--btn-default-bg': '#2e3440',
+            '--btn-default-color': '#eceff4',
+            '--active-btn-color': '#1e222a',
+            '--box-bg': '#20242e',
+            '--box-occupied-bg': '#37272e',
+            '--box-occupied-border': '#bf616a',
+            '--box-lamp-bg': '#24363e',
+            '--sim-bg': '#222732',
+            '--mode-group-bg': '#1e222a',
+            '--mode-btn-hover': '#3b4252',
+            '--nav-bg': '#242933',
+            '--nav-hover-bg': '#2e3440',
+            '--ribbon-bg': '#88c0d0',
+            '--ribbon-color': '#1e222a',
+            '--table-th-bg': '#1e222a',
+            '--table-th-color': '#88c0d0',
+            '--table-border': '#3b4252',
+            '--table-zebra': '#21252f',
+            '--border-dashed': 'rgba(136, 192, 208, 0.25)',
+            '--border-thick': '2px solid #3b4252',
+            '--border-heavy': '2px solid #4c566a',
+            '--border-radius': '8px',
+            '--border-radius-sm': '6px',
+            '--border-radius-xs': '4px',
+            '--shadow-comic': '0 8px 20px rgba(0,0,0,0.35)',
+            '--shadow-comic-sm': '0 4px 10px rgba(0,0,0,0.25)',
+            '--shadow-comic-lg': '0 12px 28px rgba(0,0,0,0.45)',
+            '--shadow-comic-xs': '0 2px 5px rgba(0,0,0,0.2)',
+            '--font-heading': "'Space Grotesk', sans-serif",
+            '--font-body': "'Space Grotesk', sans-serif",
+            '--font-mono': "'JetBrains Mono', monospace",
+            '--bg-pattern': 'radial-gradient(#3b4252 1.5px, transparent 1.5px)',
+            '--bg-pattern-size': '22px 22px',
+            '--header-speedlines': 'none',
+            '--stamp-transform': 'none',
+            '--bubble-transform': 'none'
+          }
+        },
+        'dracula': {
+          id: 'dracula',
+          name: '🧛 Dracula Vampire Dark',
+          description: 'Tema legendaris dengan latar ungu gelap pekat dipadukan aksen lavender, pink, dan cyan.',
+          category: 'dark',
+          previewColors: ['#1e1f29', '#282a36', '#bd93f9', '#ff5555', '#50fa7b'],
+          variables: {
+            '--ink': '#f8f8f2',
+            '--paper': '#1e1f29',
+            '--panel-bg': '#282a36',
+            '--text-muted': '#9ea4be',
+            '--yellow-action': '#bd93f9',
+            '--red-accent': '#ff5555',
+            '--green-safe': '#50fa7b',
+            '--cyan-tech': '#8be9fd',
+            '--input-bg': '#1e1f29',
+            '--input-color': '#f8f8f2',
+            '--input-focus-bg': '#343746',
+            '--btn-default-bg': '#343746',
+            '--btn-default-color': '#f8f8f2',
+            '--active-btn-color': '#1e1f29',
+            '--box-bg': '#21222c',
+            '--box-occupied-bg': '#3b2230',
+            '--box-occupied-border': '#ff5555',
+            '--box-lamp-bg': '#2e2547',
+            '--sim-bg': '#222430',
+            '--mode-group-bg': '#1e1f29',
+            '--mode-btn-hover': '#44475a',
+            '--nav-bg': '#282a36',
+            '--nav-hover-bg': '#44475a',
+            '--ribbon-bg': '#bd93f9',
+            '--ribbon-color': '#1e1f29',
+            '--table-th-bg': '#1e1f29',
+            '--table-th-color': '#ff79c6',
+            '--table-border': '#44475a',
+            '--table-zebra': '#242633',
+            '--border-dashed': 'rgba(189, 147, 249, 0.25)',
+            '--border-thick': '2px solid #44475a',
+            '--border-heavy': '2px solid #6272a4',
+            '--border-radius': '6px',
+            '--border-radius-sm': '5px',
+            '--border-radius-xs': '4px',
+            '--shadow-comic': '0 8px 20px rgba(0,0,0,0.4), 0 0 10px rgba(189, 147, 249, 0.2)',
+            '--shadow-comic-sm': '0 4px 8px rgba(0,0,0,0.3)',
+            '--shadow-comic-lg': '0 14px 28px rgba(0,0,0,0.5), 0 0 16px rgba(189, 147, 249, 0.3)',
+            '--shadow-comic-xs': '0 2px 4px rgba(0,0,0,0.2)',
+            '--font-heading': "'Space Grotesk', sans-serif",
+            '--font-body': "'Space Grotesk', sans-serif",
+            '--font-mono': "'JetBrains Mono', monospace",
+            '--bg-pattern': 'radial-gradient(#44475a 1.5px, transparent 1.5px)',
+            '--bg-pattern-size': '20px 20px',
+            '--header-speedlines': 'none',
+            '--stamp-transform': 'none',
+            '--bubble-transform': 'none'
+          }
+        }
+      };
+
+      // ----------------------------------------------------
+      // THEME MANAGER CLASS
+      // ----------------------------------------------------
+      class ThemeManager {
+        constructor() {
+          this.activeThemeId = localStorage.getItem('sisnam_active_theme') || 'manga';
+          this.customThemes = this.loadCustomThemes();
+          this.editingThemeId = null;
+          this.initElements();
+          this.bindEvents();
+          this.renderPresets();
+          this.updateDropdown();
+          this.applyTheme(this.activeThemeId, false);
+          this.updateSavedThemesList();
+        }
+
+        loadCustomThemes() {
+          try {
+            const raw = localStorage.getItem('sisnam_custom_themes');
+            return raw ? JSON.parse(raw) : [];
+          } catch (e) {
+            console.error('Gagal memuat tema kustom:', e);
+            return [];
+          }
+        }
+
+        saveCustomThemes() {
+          try {
+            localStorage.setItem('sisnam_custom_themes', JSON.stringify(this.customThemes));
+          } catch (e) {
+            console.error('Gagal menyimpan tema kustom:', e);
+          }
+        }
+
+        initElements() {
+          this.el = {
+            themeSelector: document.getElementById('themeSelector'),
+            btnOpenThemeModal: document.getElementById('btnOpenThemeModal'),
+            btnCloseThemeModal: document.getElementById('btnCloseThemeModal'),
+            themeStudioModal: document.getElementById('themeStudioModal'),
+            tabThemePresets: document.getElementById('tabThemePresets'),
+            tabThemeCreator: document.getElementById('tabThemeCreator'),
+            tabThemeCustomList: document.getElementById('tabThemeCustomList'),
+            themeSecPresets: document.getElementById('themeSecPresets'),
+            themeSecCreator: document.getElementById('themeSecCreator'),
+            themeSecCustomList: document.getElementById('themeSecCustomList'),
+            presetGrid: document.getElementById('presetGrid'),
+            customThemeCount: document.getElementById('customThemeCount'),
+            savedThemesList: document.getElementById('savedThemesList'),
+            // Creator inputs
+            customThemeName: document.getElementById('customThemeName'),
+            basePresetSelect: document.getElementById('basePresetSelect'),
+            colorPaper: document.getElementById('colorPaper'),
+            colorPaperHex: document.getElementById('colorPaperHex'),
+            colorPanel: document.getElementById('colorPanel'),
+            colorPanelHex: document.getElementById('colorPanelHex'),
+            colorInk: document.getElementById('colorInk'),
+            colorInkHex: document.getElementById('colorInkHex'),
+            colorYellow: document.getElementById('colorYellow'),
+            colorYellowHex: document.getElementById('colorYellowHex'),
+            colorRed: document.getElementById('colorRed'),
+            colorRedHex: document.getElementById('colorRedHex'),
+            colorGreen: document.getElementById('colorGreen'),
+            colorGreenHex: document.getElementById('colorGreenHex'),
+            colorCyan: document.getElementById('colorCyan'),
+            colorCyanHex: document.getElementById('colorCyanHex'),
+            styleFontHeading: document.getElementById('styleFontHeading'),
+            styleRadius: document.getElementById('styleRadius'),
+            styleShadow: document.getElementById('styleShadow'),
+            stylePattern: document.getElementById('stylePattern'),
+            livePreviewContainer: document.getElementById('livePreviewContainer'),
+            btnSaveCustomTheme: document.getElementById('btnSaveCustomTheme'),
+            btnResetCreator: document.getElementById('btnResetCreator'),
+            btnExportThemes: document.getElementById('btnExportThemes'),
+            btnImportThemes: document.getElementById('btnImportThemes')
+          };
+        }
+
+        bindEvents() {
+          // Quick Dropdown change
+          this.el.themeSelector.addEventListener('change', (e) => {
+            this.applyTheme(e.target.value);
+          });
+
+          // Modal Open / Close
+          this.el.btnOpenThemeModal.addEventListener('click', () => {
+            this.openModal();
+          });
+          this.el.btnCloseThemeModal.addEventListener('click', () => {
+            this.closeModal();
+          });
+          this.el.themeStudioModal.addEventListener('click', (e) => {
+            if (e.target === this.el.themeStudioModal) this.closeModal();
+          });
+          window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !this.el.themeStudioModal.classList.contains('hidden')) {
+              this.closeModal();
+            }
+          });
+
+          // Modal Subtabs Switcher
+          const switchTab = (activeBtn, activeSec) => {
+            [this.el.tabThemePresets, this.el.tabThemeCreator, this.el.tabThemeCustomList].forEach(b => b.classList.remove('active'));
+            [this.el.themeSecPresets, this.el.themeSecCreator, this.el.themeSecCustomList].forEach(s => s.classList.add('hidden'));
+            activeBtn.classList.add('active');
+            activeSec.classList.remove('hidden');
+          };
+
+          this.el.tabThemePresets.addEventListener('click', () => switchTab(this.el.tabThemePresets, this.el.themeSecPresets));
+          this.el.tabThemeCreator.addEventListener('click', () => {
+            switchTab(this.el.tabThemeCreator, this.el.themeSecCreator);
+            this.updateLivePreview();
+          });
+          this.el.tabThemeCustomList.addEventListener('click', () => switchTab(this.el.tabThemeCustomList, this.el.themeSecCustomList));
+
+          // Base preset selector in creator
+          this.el.basePresetSelect.addEventListener('change', () => {
+            this.populateCreatorFromPreset(this.el.basePresetSelect.value);
+            this.updateLivePreview();
+          });
+
+          // Preset grid single delegation listener
+          this.el.presetGrid.addEventListener('click', (e) => {
+            const card = e.target.closest('[data-theme-id]');
+            if (!card) return;
+            const themeId = card.getAttribute('data-theme-id');
+            this.applyTheme(themeId);
+          });
+
+          // Saved themes list single delegation listener
+          this.el.savedThemesList.addEventListener('click', (e) => {
+            const btn = e.target.closest('button[data-custom-action]');
+            if (!btn) return;
+            const action = btn.getAttribute('data-custom-action');
+            const id = btn.getAttribute('data-id');
+
+            if (action === 'apply') this.applyTheme(id);
+            else if (action === 'edit') this.editCustomThemeInCreator(id);
+            else if (action === 'delete') this.deleteCustomTheme(id);
+          });
+
+          // Sync color picker with hex inputs
+          const setupPair = (colorEl, hexEl) => {
+            colorEl.addEventListener('input', () => {
+              hexEl.value = colorEl.value;
+              this.updateLivePreview();
+            });
+            hexEl.addEventListener('input', () => {
+              if (/^#[0-9A-Fa-f]{6}$/.test(hexEl.value)) {
+                colorEl.value = hexEl.value;
+                this.updateLivePreview();
+              }
+            });
+          };
+
+          setupPair(this.el.colorPaper, this.el.colorPaperHex);
+          setupPair(this.el.colorPanel, this.el.colorPanelHex);
+          setupPair(this.el.colorInk, this.el.colorInkHex);
+          setupPair(this.el.colorYellow, this.el.colorYellowHex);
+          setupPair(this.el.colorRed, this.el.colorRedHex);
+          setupPair(this.el.colorGreen, this.el.colorGreenHex);
+          setupPair(this.el.colorCyan, this.el.colorCyanHex);
+
+          // Style selects update preview
+          this.el.styleFontHeading.addEventListener('change', () => this.updateLivePreview());
+          this.el.styleRadius.addEventListener('change', () => this.updateLivePreview());
+          this.el.styleShadow.addEventListener('change', () => this.updateLivePreview());
+          this.el.stylePattern.addEventListener('change', () => this.updateLivePreview());
+
+          // Save custom theme button
+          this.el.btnSaveCustomTheme.addEventListener('click', () => this.saveCurrentThemeFromCreator());
+
+          // Reset creator button
+          this.el.btnResetCreator.addEventListener('click', () => {
+            this.editingThemeId = null;
+            this.el.btnSaveCustomTheme.textContent = '💾 SIMPAN & TERAPKAN TEMA';
+            this.populateCreatorFromPreset('manga');
+            this.el.customThemeName.value = '';
+            this.updateLivePreview();
+          });
+
+          // Export JSON
+          this.el.btnExportThemes.addEventListener('click', () => this.exportThemesJSON());
+
+          // Import JSON
+          this.el.btnImportThemes.addEventListener('click', () => this.importThemesJSON());
+        }
+
+        openModal() {
+          this.el.themeStudioModal.classList.remove('hidden');
+          this.updateSavedThemesList();
+          this.highlightActivePreset();
+        }
+
+        closeModal() {
+          this.el.themeStudioModal.classList.add('hidden');
+        }
+
+        updateDropdown() {
+          let html = '<optgroup label="✨ Preset Bawaan">';
+          for (const key in PRESET_THEMES) {
+            html += `<option value="${key}">${PRESET_THEMES[key].name}</option>`;
+          }
+          html += '</optgroup>';
+
+          if (this.customThemes.length > 0) {
+            html += '<optgroup label="🌟 Tema Kustom Kamu">';
+            this.customThemes.forEach(t => {
+              html += `<option value="${t.id}">🌟 ${t.name}</option>`;
+            });
+            html += '</optgroup>';
+          }
+
+          this.el.themeSelector.innerHTML = html;
+          this.el.themeSelector.value = this.activeThemeId;
+          this.el.customThemeCount.textContent = this.customThemes.length;
+        }
+
+        renderPresets() {
+          let html = '';
+          for (const key in PRESET_THEMES) {
+            const t = PRESET_THEMES[key];
+            const swatches = t.previewColors.map(c =>
+              `<span class="swatch-circle" style="background:${c};"></span>`
+            ).join('');
+
+            html += `
+              <div class="preset-card ${this.activeThemeId === key ? 'active-theme-card' : ''}" data-theme-id="${key}">
+                <div class="preset-card-head">
+                  <span class="preset-name">${t.name}</span>
+                  <div class="swatch-row">${swatches}</div>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.35; flex: 1;">
+                  ${t.description}
+                </p>
+                <div style="display: flex; justify-content: flex-end; margin-top: 0.25rem;">
+                  <button class="btn-comic btn-sm ${this.activeThemeId === key ? 'btn-primary' : ''}" data-action="apply-preset" data-theme-id="${key}">
+                    ${this.activeThemeId === key ? '✓ AKTIF' : 'TERAPKAN'}
+                  </button>
+                </div>
+              </div>
+            `;
+          }
+
+          this.el.presetGrid.innerHTML = html;
+        }
+
+        highlightActivePreset() {
+          const cards = this.el.presetGrid.querySelectorAll('.preset-card');
+          cards.forEach(c => {
+            const tid = c.getAttribute('data-theme-id');
+            const btn = c.querySelector('button[data-action="apply-preset"]');
+            if (tid === this.activeThemeId) {
+              c.classList.add('active-theme-card');
+              if (btn) {
+                btn.classList.add('btn-primary');
+                btn.textContent = '✓ AKTIF';
+              }
+            } else {
+              c.classList.remove('active-theme-card');
+              if (btn) {
+                btn.classList.remove('btn-primary');
+                btn.textContent = 'TERAPKAN';
+              }
+            }
+          });
+        }
+
+        applyTheme(themeId, save = true) {
+          let themeObj = PRESET_THEMES[themeId];
+          if (!themeObj) {
+            themeObj = this.customThemes.find(t => t.id === themeId);
+          }
+
+          if (!themeObj) {
+            console.warn(`Tema '${themeId}' tidak ditemukan, fallback ke Manga default.`);
+            themeId = 'manga';
+            themeObj = PRESET_THEMES['manga'];
+          }
+
+          this.activeThemeId = themeId;
+          if (save) {
+            localStorage.setItem('sisnam_active_theme', themeId);
+          }
+
+          // Apply CSS Variables to root
+          const root = document.documentElement;
+          const vars = themeObj.variables;
+          for (const prop in vars) {
+            root.style.setProperty(prop, vars[prop]);
+          }
+
+          document.body.setAttribute('data-theme', themeId);
+          this.el.themeSelector.value = themeId;
+          this.highlightActivePreset();
+          this.updateSavedThemesList();
+        }
+
+        populateCreatorFromPreset(presetKey) {
+          const t = PRESET_THEMES[presetKey] || PRESET_THEMES['manga'];
+          const v = t.variables;
+
+          this.el.colorPaper.value = v['--paper'] || '#fbf7ee';
+          this.el.colorPaperHex.value = v['--paper'] || '#fbf7ee';
+          this.el.colorPanel.value = v['--panel-bg'] || '#ffffff';
+          this.el.colorPanelHex.value = v['--panel-bg'] || '#ffffff';
+          this.el.colorInk.value = v['--ink'] || '#0d0d0d';
+          this.el.colorInkHex.value = v['--ink'] || '#0d0d0d';
+          this.el.colorYellow.value = v['--yellow-action'] || '#ffe600';
+          this.el.colorYellowHex.value = v['--yellow-action'] || '#ffe600';
+          this.el.colorRed.value = v['--red-accent'] || '#ff2a2a';
+          this.el.colorRedHex.value = v['--red-accent'] || '#ff2a2a';
+          this.el.colorGreen.value = v['--green-safe'] || '#00e575';
+          this.el.colorGreenHex.value = v['--green-safe'] || '#00e575';
+          this.el.colorCyan.value = v['--cyan-tech'] || '#00f0ff';
+          this.el.colorCyanHex.value = v['--cyan-tech'] || '#00f0ff';
+
+          if (v['--font-heading'] && v['--font-heading'].includes('Bangers')) this.el.styleFontHeading.value = 'bangers';
+          else if (v['--font-heading'] && v['--font-heading'].includes('Orbitron')) this.el.styleFontHeading.value = 'orbitron';
+          else if (v['--font-heading'] && v['--font-heading'].includes('Mono')) this.el.styleFontHeading.value = 'mono';
+          else this.el.styleFontHeading.value = 'space';
+
+          if (v['--border-radius'] === '0px') this.el.styleRadius.value = 'sharp';
+          else if (v['--border-radius'] === '14px' || v['--border-radius'] === '16px') this.el.styleRadius.value = 'pill';
+          else this.el.styleRadius.value = 'rounded';
+
+          if (v['--shadow-comic'] && v['--shadow-comic'].includes('rgba')) {
+            if (v['--shadow-comic'].includes('0 0')) this.el.styleShadow.value = 'neon';
+            else this.el.styleShadow.value = 'modern';
+          } else if (v['--shadow-comic'] === 'none') {
+            this.el.styleShadow.value = 'none';
+          } else {
+            this.el.styleShadow.value = 'comic';
+          }
+
+          if (v['--bg-pattern'] && v['--bg-pattern'].includes('linear-gradient')) {
+            if (v['--bg-pattern'].includes('repeating')) this.el.stylePattern.value = 'scanlines';
+            else this.el.stylePattern.value = 'grid';
+          } else if (v['--bg-pattern'] && v['--bg-pattern'].includes('radial')) {
+            if (v['--bg-pattern-size'] === '14px 14px') this.el.stylePattern.value = 'halftone';
+            else this.el.stylePattern.value = 'clean-dot';
+          } else {
+            this.el.stylePattern.value = 'none';
+          }
+        }
+
+        buildVariablesFromCreator() {
+          const paper = this.el.colorPaperHex.value.trim() || '#fbf7ee';
+          const panel = this.el.colorPanelHex.value.trim() || '#ffffff';
+          const ink = this.el.colorInkHex.value.trim() || '#0d0d0d';
+          const action = this.el.colorYellowHex.value.trim() || '#ffe600';
+          const red = this.el.colorRedHex.value.trim() || '#ff2a2a';
+          const green = this.el.colorGreenHex.value.trim() || '#00e575';
+          const cyan = this.el.colorCyanHex.value.trim() || '#00f0ff';
+
+          // Font selection
+          let headingFont = "'Space Grotesk', sans-serif";
+          if (this.el.styleFontHeading.value === 'bangers') headingFont = "'Bangers', cursive";
+          else if (this.el.styleFontHeading.value === 'orbitron') headingFont = "'Orbitron', sans-serif";
+          else if (this.el.styleFontHeading.value === 'mono') headingFont = "'JetBrains Mono', monospace";
+
+          // Radius selection
+          let radMain = '8px', radSm = '6px', radXs = '4px';
+          if (this.el.styleRadius.value === 'sharp') {
+            radMain = '0px'; radSm = '0px'; radXs = '0px';
+          } else if (this.el.styleRadius.value === 'pill') {
+            radMain = '14px'; radSm = '10px'; radXs = '6px';
+          }
+
+          // Shadow selection
+          let shComic = `5px 5px 0px ${ink}`, shSm = `3px 3px 0px ${ink}`, shLg = `8px 8px 0px ${ink}`, shXs = `2px 2px 0px ${ink}`;
+          if (this.el.styleShadow.value === 'neon') {
+            shComic = `0 0 16px ${action}55, 0 4px 8px rgba(0,0,0,0.5)`;
+            shSm = `0 0 10px ${action}44`;
+            shLg = `0 0 24px ${action}77`;
+            shXs = `0 0 5px ${action}44`;
+          } else if (this.el.styleShadow.value === 'modern') {
+            shComic = '0 10px 20px -3px rgba(0,0,0,0.25), 0 4px 6px -2px rgba(0,0,0,0.15)';
+            shSm = '0 4px 6px -1px rgba(0,0,0,0.2)';
+            shLg = '0 20px 25px -5px rgba(0,0,0,0.3)';
+            shXs = '0 1px 3px rgba(0,0,0,0.15)';
+          } else if (this.el.styleShadow.value === 'none') {
+            shComic = 'none'; shSm = 'none'; shLg = 'none'; shXs = 'none';
+          }
+
+          // Pattern selection
+          let bgPattern = 'none', bgSize = 'auto';
+          if (this.el.stylePattern.value === 'halftone') {
+            bgPattern = `radial-gradient(${ink} 12%, transparent 13%)`;
+            bgSize = '14px 14px';
+          } else if (this.el.stylePattern.value === 'grid') {
+            bgPattern = `linear-gradient(${ink}15 1px, transparent 1px), linear-gradient(90deg, ${ink}15 1px, transparent 1px)`;
+            bgSize = '24px 24px';
+          } else if (this.el.stylePattern.value === 'scanlines') {
+            bgPattern = `repeating-linear-gradient(0deg, ${ink}12, ${ink}12 1px, transparent 1px, transparent 3px)`;
+            bgSize = '100% 3px';
+          } else if (this.el.stylePattern.value === 'clean-dot') {
+            bgPattern = `radial-gradient(${ink}25 1.5px, transparent 1.5px)`;
+            bgSize = '20px 20px';
+          }
+
+          const isDark = this.isColorDark(paper);
+
+          return {
+            '--ink': ink,
+            '--paper': paper,
+            '--panel-bg': panel,
+            '--text-muted': isDark ? '#9aa5b8' : '#555555',
+            '--yellow-action': action,
+            '--red-accent': red,
+            '--green-safe': green,
+            '--cyan-tech': cyan,
+            '--input-bg': isDark ? this.shadeColor(paper, 10) : '#ffffff',
+            '--input-color': ink,
+            '--input-focus-bg': isDark ? this.shadeColor(paper, 20) : '#fffef2',
+            '--btn-default-bg': isDark ? this.shadeColor(panel, 12) : '#ffffff',
+            '--btn-default-color': ink,
+            '--active-btn-color': isDark ? '#05070a' : '#0d0d0d',
+            '--box-bg': isDark ? this.shadeColor(panel, 6) : '#fafafa',
+            '--box-occupied-bg': isDark ? '#38131e' : '#fff1b8',
+            '--box-occupied-border': red,
+            '--box-lamp-bg': isDark ? '#143040' : '#ffe680',
+            '--sim-bg': isDark ? this.shadeColor(panel, 8) : '#fdf2d0',
+            '--mode-group-bg': isDark ? this.shadeColor(paper, -10) : ink,
+            '--mode-btn-hover': isDark ? this.shadeColor(panel, 20) : '#eeeeee',
+            '--nav-bg': isDark ? panel : paper,
+            '--nav-hover-bg': isDark ? this.shadeColor(panel, 15) : '#efe9dc',
+            '--ribbon-bg': action,
+            '--ribbon-color': isDark ? '#05070a' : '#0d0d0d',
+            '--table-th-bg': isDark ? this.shadeColor(panel, 15) : ink,
+            '--table-th-color': isDark ? action : '#ffffff',
+            '--table-border': isDark ? this.shadeColor(panel, 25) : ink,
+            '--table-zebra': isDark ? this.shadeColor(panel, 4) : '#fbf9f4',
+            '--border-dashed': isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
+            '--border-thick': `2px solid ${ink}`,
+            '--border-heavy': `3px solid ${ink}`,
+            '--border-radius': radMain,
+            '--border-radius-sm': radSm,
+            '--border-radius-xs': radXs,
+            '--shadow-comic': shComic,
+            '--shadow-comic-sm': shSm,
+            '--shadow-comic-lg': shLg,
+            '--shadow-comic-xs': shXs,
+            '--font-heading': headingFont,
+            '--font-body': "'Space Grotesk', sans-serif",
+            '--font-mono': "'JetBrains Mono', monospace",
+            '--bg-pattern': bgPattern,
+            '--bg-pattern-size': bgSize,
+            '--header-speedlines': 'none',
+            '--stamp-transform': 'none',
+            '--bubble-transform': 'none'
+          };
+        }
+
+        updateLivePreview() {
+          const v = this.buildVariablesFromCreator();
+          const p = this.el.livePreviewContainer;
+
+          p.style.backgroundColor = v['--paper'];
+          p.style.backgroundImage = v['--bg-pattern'];
+          p.style.backgroundSize = v['--bg-pattern-size'];
+          p.style.padding = '0.5rem';
+          p.style.borderRadius = v['--border-radius-sm'];
+
+          const miniCard = p.querySelector('.preview-mini-card');
+          miniCard.style.backgroundColor = v['--panel-bg'];
+          miniCard.style.border = v['--border-heavy'];
+          miniCard.style.boxShadow = v['--shadow-comic-sm'];
+          miniCard.style.borderRadius = v['--border-radius'];
+          miniCard.style.color = v['--ink'];
+
+          const top = miniCard.querySelector('.preview-card-top');
+          top.style.borderColor = v['--ink'];
+
+          const title = miniCard.querySelector('.preview-room-title');
+          title.style.fontFamily = v['--font-heading'];
+
+          const bStatus = miniCard.querySelector('.preview-badge-status');
+          bStatus.style.backgroundColor = v['--green-safe'];
+          bStatus.style.color = v['--active-btn-color'];
+          bStatus.style.borderColor = v['--ink'];
+          bStatus.style.borderRadius = v['--border-radius-xs'];
+
+          const bTag = miniCard.querySelector('.preview-tag');
+          bTag.style.backgroundColor = v['--btn-default-bg'];
+          bTag.style.borderColor = v['--ink'];
+          bTag.style.borderRadius = v['--border-radius-xs'];
+
+          const occCell = miniCard.querySelector('.preview-cell-occupied');
+          occCell.style.backgroundColor = v['--box-occupied-bg'];
+          occCell.style.borderColor = v['--box-occupied-border'];
+          occCell.style.borderRadius = v['--border-radius-xs'];
+
+          const lampCell = miniCard.querySelector('.preview-cell-lamp');
+          lampCell.style.backgroundColor = v['--box-lamp-bg'];
+          lampCell.style.borderColor = v['--ink'];
+          lampCell.style.borderRadius = v['--border-radius-xs'];
+
+          const sfxs = miniCard.querySelectorAll('.preview-sfx');
+          sfxs[0].style.backgroundColor = v['--red-accent'];
+          sfxs[0].style.color = '#fff';
+          sfxs[0].style.fontFamily = v['--font-heading'];
+          sfxs[1].style.backgroundColor = v['--yellow-action'];
+          sfxs[1].style.color = v['--active-btn-color'];
+          sfxs[1].style.fontFamily = v['--font-heading'];
+
+          const modeBar = miniCard.querySelector('.preview-mode-bar');
+          modeBar.style.backgroundColor = v['--mode-group-bg'];
+          modeBar.style.borderColor = v['--ink'];
+          modeBar.style.borderRadius = v['--border-radius-xs'];
+
+          const modeBtns = miniCard.querySelectorAll('.preview-mode-btn');
+          modeBtns.forEach(b => {
+            b.style.borderColor = v['--ink'];
+            b.style.borderRadius = v['--border-radius-xs'];
+            if (b.classList.contains('preview-mode-active')) {
+              b.style.backgroundColor = v['--yellow-action'];
+              b.style.color = v['--active-btn-color'];
+            } else {
+              b.style.backgroundColor = v['--btn-default-bg'];
+              b.style.color = v['--ink'];
+            }
+          });
+
+          const footer = miniCard.querySelector('.preview-footer');
+          footer.style.borderColor = v['--ink'];
+          footer.style.color = v['--text-muted'];
+        }
+
+        saveCurrentThemeFromCreator() {
+          const name = this.el.customThemeName.value.trim();
+          if (!name) {
+            alert('Silakan beri nama tema kustommu terlebih dahulu!');
+            this.el.customThemeName.focus();
+            return;
+          }
+
+          const variables = this.buildVariablesFromCreator();
+          const previewColors = [
+            variables['--paper'],
+            variables['--panel-bg'],
+            variables['--ink'],
+            variables['--yellow-action'],
+            variables['--red-accent']
+          ];
+
+          if (this.editingThemeId) {
+            const existing = this.customThemes.find(t => t.id === this.editingThemeId);
+            if (existing) {
+              existing.name = name;
+              existing.variables = variables;
+              existing.previewColors = previewColors;
+              this.saveCustomThemes();
+              this.updateDropdown();
+              this.updateSavedThemesList();
+              this.applyTheme(this.editingThemeId);
+              alert(`Tema "${name}" berhasil diperbarui!`);
+              this.editingThemeId = null;
+              this.el.btnSaveCustomTheme.textContent = '💾 SIMPAN & TERAPKAN TEMA';
+              this.el.tabThemeCustomList.click();
+              return;
+            }
+          }
+
+          const id = 'custom-' + Date.now();
+          const newTheme = {
+            id,
+            name,
+            description: `Tema kustom kreasi pengguna dibuat pada ${new Date().toLocaleDateString('id-ID')}.`,
+            category: 'custom',
+            previewColors,
+            variables
+          };
+
+          this.customThemes.push(newTheme);
+          this.saveCustomThemes();
+          this.updateDropdown();
+          this.updateSavedThemesList();
+          this.applyTheme(id);
+
+          alert(`Tema "${name}" berhasil disimpan dan diterapkan!`);
+          this.el.tabThemeCustomList.click();
+        }
+
+        deleteCustomTheme(themeId) {
+          const target = this.customThemes.find(t => t.id === themeId);
+          if (!target) return;
+          if (!confirm(`Yakin ingin menghapus tema kustom "${target.name}"?`)) return;
+
+          this.customThemes = this.customThemes.filter(t => t.id !== themeId);
+          this.saveCustomThemes();
+          this.updateDropdown();
+          this.updateSavedThemesList();
+
+          if (this.activeThemeId === themeId) {
+            this.applyTheme('manga');
+          }
+        }
+
+        editCustomThemeInCreator(themeId) {
+          const target = this.customThemes.find(t => t.id === themeId);
+          if (!target) return;
+
+          this.editingThemeId = themeId;
+          this.el.btnSaveCustomTheme.textContent = '💾 PERBARUI TEMA KUSTOM';
+          this.el.customThemeName.value = target.name;
+          const v = target.variables;
+
+          this.el.colorPaper.value = v['--paper'] || '#fbf7ee';
+          this.el.colorPaperHex.value = v['--paper'] || '#fbf7ee';
+          this.el.colorPanel.value = v['--panel-bg'] || '#ffffff';
+          this.el.colorPanelHex.value = v['--panel-bg'] || '#ffffff';
+          this.el.colorInk.value = v['--ink'] || '#0d0d0d';
+          this.el.colorInkHex.value = v['--ink'] || '#0d0d0d';
+          this.el.colorYellow.value = v['--yellow-action'] || '#ffe600';
+          this.el.colorYellowHex.value = v['--yellow-action'] || '#ffe600';
+          this.el.colorRed.value = v['--red-accent'] || '#ff2a2a';
+          this.el.colorRedHex.value = v['--red-accent'] || '#ff2a2a';
+          this.el.colorGreen.value = v['--green-safe'] || '#00e575';
+          this.el.colorGreenHex.value = v['--green-safe'] || '#00e575';
+          this.el.colorCyan.value = v['--cyan-tech'] || '#00f0ff';
+          this.el.colorCyanHex.value = v['--cyan-tech'] || '#00f0ff';
+
+          this.el.tabThemeCreator.click();
+          this.updateLivePreview();
+        }
+
+        updateSavedThemesList() {
+          if (this.customThemes.length === 0) {
+            this.el.savedThemesList.innerHTML = `
+              <div style="border: 2px dashed var(--ink); padding: 2rem; text-align: center; border-radius: var(--border-radius-sm);">
+                <p style="font-weight: 700; margin-bottom: 0.5rem;">Kamu belum memiliki tema kustom sendiri.</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                  Gunakan tab "🛠️ BUAT TEMA SENDIRI" untuk meracik palet warna impianmu!
+                </p>
+                <button class="btn-comic btn-primary btn-sm" onclick="document.getElementById('tabThemeCreator').click()">+ BIKIN TEMA SEKARANG</button>
+              </div>
+            `;
+            this.el.customThemeCount.textContent = '0';
+            return;
+          }
+
+          this.el.customThemeCount.textContent = this.customThemes.length;
+
+          let html = '';
+          this.customThemes.forEach(t => {
+            const swatches = t.previewColors.map(c =>
+              `<span class="swatch-circle" style="background:${c};"></span>`
+            ).join('');
+
+            const isActive = this.activeThemeId === t.id;
+
+            html += `
+              <div class="custom-theme-item">
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                  <div class="swatch-row">${swatches}</div>
+                  <div>
+                    <strong style="font-size: 0.95rem; text-transform: uppercase;">${escapeHtml(t.name)}</strong>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">${t.description || 'Tema kustom'}</div>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 0.4rem; align-items: center;">
+                  <button class="btn-comic btn-sm ${isActive ? 'btn-primary' : ''}" data-custom-action="apply" data-id="${t.id}">
+                    ${isActive ? '✓ AKTIF' : 'GUNAKAN'}
+                  </button>
+                  <button class="btn-comic btn-sm" data-custom-action="edit" data-id="${t.id}">
+                    EDIT
+                  </button>
+                  <button class="btn-comic btn-danger btn-sm" data-custom-action="delete" data-id="${t.id}" title="Hapus Tema">
+                    ✕
+                  </button>
+                </div>
+              </div>
+            `;
+          });
+
+          this.el.savedThemesList.innerHTML = html;
+        }
+
+        exportThemesJSON() {
+          if (this.customThemes.length === 0) {
+            alert('Belum ada tema kustom yang bisa diekspor.');
+            return;
+          }
+          const dataStr = JSON.stringify(this.customThemes, null, 2);
+          navigator.clipboard.writeText(dataStr).then(() => {
+            alert('JSON data tema kustom berhasil disalin ke clipboard! Kamu bisa menyimpannya sebagai backup.');
+          }).catch(() => {
+            prompt('Salin teks JSON berikut:', dataStr);
+          });
+        }
+
+        importThemesJSON() {
+          const input = prompt('Tempel (paste) data JSON tema kustom di sini:');
+          if (!input) return;
+          try {
+            const imported = JSON.parse(input);
+            if (!Array.isArray(imported)) throw new Error('Data harus berupa array JSON tema');
+            let addedCount = 0;
+            imported.forEach(item => {
+              if (item.name && item.variables) {
+                item.id = 'imported-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+                this.customThemes.push(item);
+                addedCount++;
+              }
+            });
+            this.saveCustomThemes();
+            this.updateDropdown();
+            this.updateSavedThemesList();
+            alert(`Berhasil mengimpor ${addedCount} tema kustom!`);
+          } catch (err) {
+            alert('Format JSON tidak valid! Pastikan format sesuai ekspor tema.');
+          }
+        }
+
+        isColorDark(hexColor) {
+          const hex = hexColor.replace('#', '');
+          const r = parseInt(hex.substr(0, 2), 16);
+          const g = parseInt(hex.substr(2, 2), 16);
+          const b = parseInt(hex.substr(4, 2), 16);
+          const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+          return yiq < 128;
+        }
+
+        shadeColor(color, percent) {
+          let num = parseInt(color.replace('#', ''), 16),
+            amt = Math.round(2.55 * percent),
+            R = (num >> 16) + amt,
+            G = (num >> 8 & 0x00FF) + amt,
+            B = (num & 0x0000FF) + amt;
+          return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+            (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+            (B < 255 ? B < 1 ? 0 : B : 255))
+            .toString(16).slice(1);
+        }
+      }
+
+      // ----------------------------------------------------
+      // SISNAM APPLICATION CORE LOGIC
+      // ----------------------------------------------------
       const state = {
         rooms: [
           {
@@ -979,20 +2921,6 @@ void loop() {
         inoCodeBlock: document.getElementById('inoCodeBlock')
       };
 
-      function formatDuration(ms) {
-        const s = Math.max(0, Math.floor(ms / 1000));
-        const h = String(Math.floor(s / 3600)).padStart(2, '0');
-        const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
-        const sec = String(s % 60).padStart(2, '0');
-        return `${h}:${m}:${sec}`;
-      }
-
-      function escapeHtml(str) {
-        return String(str).replace(/[&<>"']/g, s => ({
-          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-        }[s]));
-      }
-
       function addLog(room, note) {
         const time = new Date().toTimeString().split(' ')[0];
         state.logs.unshift({
@@ -1009,13 +2937,13 @@ void loop() {
 
       function renderLogs() {
         if (state.logs.length === 0) {
-          el.logBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 1.5rem; color: #666;">BELUM ADA AKTIVITAS DETEKSI</td></tr>';
+          el.logBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 1.5rem; color: var(--text-muted);">BELUM ADA AKTIVITAS DETEKSI</td></tr>';
           return;
         }
         el.logBody.innerHTML = state.logs.map(row => `
           <tr>
             <td>${row.time}</td>
-            <td style="font-weight: 900; font-family: 'Space Grotesk';">${escapeHtml(row.roomName)}</td>
+            <td style="font-weight: 900; font-family: var(--font-body);">${escapeHtml(row.roomName)}</td>
             <td>${escapeHtml(row.ip)}</td>
             <td>
               <span class="comic-badge ${row.presence ? 'badge-offline' : 'badge-online'}">
@@ -1023,11 +2951,11 @@ void loop() {
               </span>
             </td>
             <td>
-              <span class="comic-badge ${row.lamp ? 'badge-sim' : ''}" style="${!row.lamp ? 'background:#e5e5e5;' : ''}">
+              <span class="comic-badge ${row.lamp ? 'badge-sim' : 'badge-lamp-off'}">
                 ${row.lamp ? 'NYALA (ON)' : 'PADAM (OFF)'}
               </span>
             </td>
-            <td style="font-family: 'Space Grotesk';">${escapeHtml(row.note)}</td>
+            <td style="font-family: var(--font-body);">${escapeHtml(row.note)}</td>
           </tr>
         `).join('');
       }
@@ -1036,7 +2964,7 @@ void loop() {
         if (state.rooms.length === 0) {
           el.roomsContainer.innerHTML = `
             <div class="manga-panel" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-              <h3 style="font-family: 'Bangers'; font-size: 1.8rem; margin-bottom: 0.5rem;">BELUM ADA NODE TERHUBUNG!</h3>
+              <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.5rem;">BELUM ADA NODE TERHUBUNG!</h3>
               <p style="font-weight: 700;">Gunakan form di atas untuk mendaftarkan ESP32 ke dalam sistem pengawasan.</p>
             </div>
           `;
@@ -1098,7 +3026,7 @@ void loop() {
                 </div>
                 <div>
                   <div class="sfx-text" id="lamp-val-${room.id}">
-                    ${room.lamp ? '<span class="sfx-bubble">PIKAA!</span> NYALA' : '<span class="sfx-bubble" style="background:#555;">KACHI</span> MATI'}
+                    ${room.lamp ? '<span class="sfx-bubble">PIKAA!</span> NYALA' : '<span class="sfx-bubble bubble-off">KACHI</span> MATI'}
                   </div>
                   <div class="sfx-sub" id="lamp-desc-${room.id}">
                     ${room.lamp ? 'Relay Triggered: LOW' : 'Relay Idle: HIGH'}
@@ -1152,10 +3080,16 @@ void loop() {
           : '<span class="sfx-bubble green">SHIIIN~</span> KOSONG';
         occDesc.textContent = room.presence ? 'Target detected in zone' : 'Zone clear of motion';
 
+        const occBox = occVal.closest('.status-panel-box');
+        if (occBox) occBox.classList.toggle('occupied', !!room.presence);
+
         lampVal.innerHTML = room.lamp
           ? '<span class="sfx-bubble">PIKAA!</span> NYALA'
-          : '<span class="sfx-bubble" style="background:#555;">KACHI</span> MATI';
+          : '<span class="sfx-bubble bubble-off">KACHI</span> MATI';
         lampDesc.textContent = room.lamp ? 'Relay Triggered: LOW' : 'Relay Idle: HIGH';
+
+        const lampBox = lampVal.closest('.status-panel-box');
+        if (lampBox) lampBox.classList.toggle('lamp-active', !!room.lamp);
 
         btnAuto.className = (room.mode === 'AUTO') ? 'active' : '';
         btnOn.className = (room.mode === 'ON' || room.mode === 'MANUAL_ON') ? 'active' : '';
@@ -1200,10 +3134,10 @@ void loop() {
           }
           initialized = true;
         } catch (e) {
-          // Fallback standalone / canvas render
+          // Fallback standalone / local render
           if (!initialized) {
             renderAllRooms();
-            addLog(state.rooms[0], 'Sistem inisialisasi: Mode Standalone / Manga GUI Aktif');
+            addLog(state.rooms[0], 'Sistem inisialisasi: Mode Standalone Aktif');
             initialized = true;
           }
         }
@@ -1353,11 +3287,13 @@ void loop() {
         }
       });
 
+      // Clear log
       el.btnClearLog.addEventListener('click', () => {
         state.logs = [];
         renderLogs();
       });
 
+      // Copy firmware code
       el.btnCopyIno.addEventListener('click', () => {
         const rawCode = el.inoCodeBlock.innerText;
         navigator.clipboard.writeText(rawCode).then(() => {
@@ -1367,14 +3303,14 @@ void loop() {
         });
       });
 
+      // Initialize Theme Manager & Data Poller
+      const themeManager = new ThemeManager();
+      window.sisnamThemeManager = themeManager;
+
       fetchAndUpdate();
       setInterval(fetchAndUpdate, 1000);
     })();
   </script>
-
-
-
-
 </body>
 
 </html>
