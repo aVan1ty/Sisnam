@@ -1,6 +1,6 @@
 // ============================================================================
-// SISNAM 2.0 - Sistem Monitoring & Kontrol Kamar Mandi Pintar (ESP32)
-// Sensor Kehadiran Radar mmWave HLK-LD2410C (GPIO 22) + Relay Lampu (GPIO 23)
+// SISNAM - Sistem Monitoring & Kontrol Kamar Mandi Pintar
+// Sensor Kehadiran Radar mmWave HLK-LD2410C + Relay Lampu 
 // Kelompok 8 - Mendukung Endpoint /status & /control?mode=AUTO|ON|OFF
 // ============================================================================
 
